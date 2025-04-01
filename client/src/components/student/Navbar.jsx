@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useClerk,UserButton,useUser } from '@clerk/clerk-react'
 
 function Navbar() {
  const  isCourseList = location.pathname.includes('/course-list')
+ const {openSignIn} = useClerk()
+ const {user}=useUser()
   return (
       <>
 <div className={`flex items-center justify-between p-4 ${
@@ -13,9 +16,9 @@ function Navbar() {
          <div className="hidden md:flex  items-center px-4 py-2 rounded-md gap-4">
            <button className="mr-4 justify-between px-2 py-2  font-bold">Become Mentor</button>
            <Link to="/my-enrollments" className="text-white">My Enrollments</Link>
-         <button className="px-4 py-2 bg-blue-500 text-white text-lg rounded-md">
+      { user ? <UserButton /> :  <button onClick={()=>{openSignIn()}} className="px-4 py-2 bg-blue-500 text-white text-lg rounded-md">
          Create Account
-        </button>
+        </button>}
         </div>
       </div>
       <div className='md:hidden flex  items-center '>
