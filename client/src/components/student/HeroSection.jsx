@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from './SearchBar';
 
 function HeroSection() {
   return (
@@ -15,7 +16,7 @@ function HeroSection() {
       <p className='mt-4 text-lg md:text-xl text-gray-600 max-w-2xl'>
         Join thousands of learners and take the next step towards your professional growth. Flexible learning at your own pace!
       </p>
-    
+    <SearchBar />
     </div>
   );
 }
