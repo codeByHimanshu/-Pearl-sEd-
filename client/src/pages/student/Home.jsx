@@ -1,10 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import HeroSection from '../../components/student/HeroSection'
 
 function Home() {
   return (
     <div>
-      <h1>studen home page</h1>
+    <HeroSection />
       <Outlet />
     </div>
 
