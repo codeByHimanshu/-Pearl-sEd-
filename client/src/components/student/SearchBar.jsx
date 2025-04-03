@@ -1,39 +1,37 @@
 import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import "animate.css";
 
-function SearchBar({data}) {
-    const [searchValue, setSearchvalue]=useState( data ? data :"")
-    const navigate = useNavigate()
+function SearchBar({ data }) {
+  const [searchValue, setSearchValue] = useState(data ? data : "");
+  const navigate = useNavigate();
 
-    const handleSearch=(e)=>{
-        e.preventDefault();
-        navigate('/course-list/'+ searchValue)
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchValue.trim() !== "") {
+      navigate("/course-list/" + searchValue);
     }
+  };
+
   return (
     <form
-    onSubmit={handleSearch}
-     className="max-w-xl w-full flex items-center bg-white shadow-md rounded-full p-2 border border-gray-300">
-      <img
-        src="https://source.unsplash.com/40x40/?education,learning"
-        alt="Search"
-        className="w-10 h-10 rounded-full object-cover mr-3"
-      />
-
-      <FiSearch className="text-gray-500 text-xl mx-3" />
-
+      onSubmit={handleSearch}
+      className="max-w-xl w-full flex items-center bg-gray-200 shadow-md rounded-full p-3 border border-gray-400 animate__animated animate__fadeInDown"
+    >
+      <FiSearch className="text-gray-700 text-2xl mx-3 animate__animated animate__pulse animate__infinite" />
+      
       <input
-      onChange={(e)=>{
-        setSearchvalue(e.target.value)
-      }}
+        onChange={(e) => setSearchValue(e.target.value)}
         type="text"
+        value={searchValue}
         placeholder="Search courses..."
-        className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
+        className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-600"
       />
 
       <button
         type="submit"
-        className="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition duration-300"
+        className="bg-gray-700 text-white px-5 py-2 rounded-full hover:bg-gray-800 transition duration-300 animate__animated animate__fadeIn"
       >
         Search
       </button>
