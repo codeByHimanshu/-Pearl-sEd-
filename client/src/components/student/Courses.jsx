@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CourseCard from './CourseCard';
 
 function Courses() {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <CourseCard />
       <h1 className="text-3xl font-bold text-gray-800 mb-4">Learn from Skilled Mentors</h1>
       <p className="text-gray-600 leading-relaxed mb-6">
         Expand your knowledge with industry experts. Gain hands-on experience with courses designed to help you succeed in your career. Whether you are a beginner or an experienced professional, we have something for you.

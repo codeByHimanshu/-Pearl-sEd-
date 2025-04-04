@@ -1,11 +1,14 @@
-import React from 'react'
-
-function AppContext() {
+import { createContext } from "react"
+ const AppContext = createContext()
+export const  AppContextPrtovider =(props) =>{
+  const currency = 'INR'
+  const value = {
+    currency
+  }
   return (
-    <div>
-      
-    </div>
+    <AppContext.Provider value={value}>
+{props.children}
+    </AppContext.Provider>
   )
 }
 
-export default AppContext
