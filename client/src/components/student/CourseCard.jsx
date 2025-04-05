@@ -30,10 +30,10 @@ function CourseCard() {
               ))}
             </div>
           </div>
-          <p className="text-sm text-gray-500">223 students</p>
+          <p className="text-sm text-gray-500">20 students</p>
         </div>
 
-        <p className="text-lg font-bold">{currency} 1000</p>                       
+        <p className="text-lg font-bold">{currency} 100</p>                       
       </div>
     </div>
   );
