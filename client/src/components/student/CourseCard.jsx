@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 
-import { dummyCourses } from '../../assets/assets';
-import { AppContextPrtovider } from '../../context/AppContext';
+import { AppContext} from '../../context/AppContext';
 
-function CourseCard() {
-  const currency = useContext(AppContextPrtovider)
-  const course = dummyCourses[0]; // Assuming you want to show the first course
+function CourseCard({course}) {
+  const {currency} = useContext(AppContext)
+
 
   return (
     <div className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
