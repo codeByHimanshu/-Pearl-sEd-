@@ -15,9 +15,9 @@ function Navbar() {
     }`}
   >
       <img
-        src="https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bG9nb3xlbnwwfHwwfHx8MA%3D%3D"
+        src="/src/assets/loggo.svg"
         alt="logo"
-        className="h-12 w-12 animate__animated animate__zoomIn"
+          className="h-20 w-64 animate__animated animate__zoomIn  rounded-xl"
       />
       <div className="flex items-center space-x-4">
         <div className="hidden md:flex items-center px-4 py-2 rounded-md gap-4">

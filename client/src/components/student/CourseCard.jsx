@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { Link } from 'react-router-dom';
 
 function CourseCard({ course }) {
   const { currency } = useContext(AppContext);
 
 
   return (
-    <div className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+    <Link to={'/course-detail/'+ course.id}
+    onclick={()=>scrollTo(0,0,)}
+     className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       <img
         src={course.courseThumbnail}
         alt="Course Thumbnail"
@@ -44,7 +47,7 @@ function CourseCard({ course }) {
           {currency} {course.coursePrice}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
