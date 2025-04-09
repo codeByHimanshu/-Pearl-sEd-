@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 
 function HeroSection() {
   return (
+
     <div className="relative bg-gradient-to-br from-green-50 to-white py-20 px-6 md:px-16 flex flex-col items-center text-center">
 
 

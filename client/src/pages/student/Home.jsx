@@ -5,15 +5,17 @@ import Companies from "../../components/student/Compnies";
 import Courses from "../../components/student/Courses";
 import Navbar from "../../components/student/Navbar";
 import Testimonials from "../../components/student/Testimonials";
+import ActionButton from "../../components/student/ActionButton";
 
 function Home() {
   return (
-    <div>
+    <div className="bg-gray-100 ">
       <Navbar />
       <HeroSection />
       <Companies />
       <Courses />
       <Testimonials />
+      <ActionButton />
     </div>
   );
 }
