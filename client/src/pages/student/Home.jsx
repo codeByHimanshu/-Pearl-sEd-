@@ -6,6 +6,7 @@ import Courses from "../../components/student/Courses";
 import Navbar from "../../components/student/Navbar";
 import Testimonials from "../../components/student/Testimonials";
 import ActionButton from "../../components/student/ActionButton";
+import Footer from "../../components/student/Footer";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <Courses />
       <Testimonials />
       <ActionButton />
+      <Footer />
     </div>
   );
 }
