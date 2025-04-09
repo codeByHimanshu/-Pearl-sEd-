@@ -1,29 +1,30 @@
 import { createContext, useEffect, useState } from "react";
-import { dummyCourses } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { dummyCourses,dataTestimonial } from "../assets/assets";
+
 
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
   const currency = "INR";
   const [courseData, setCourseData] = useState([]);
+  const [isMentor,setIsMentor] = useState(false)
+  const [dummyTestimonials ,setDummyTestimonials]=useState([])
+
+  
 
 
   useEffect(() => {
+    setDummyTestimonials(dataTestimonial)
     setCourseData(dummyCourses);
   }, []);
 
-  const avg_rating = (course) => {
-    if ( course.courseRatings.length === 0) return 0;
-    const total = 0;
-    course.rating.forEeach((rating) => {total +=  courseRatings.rating});
-    return (total / course.courseRatings.length);
-  };
 
   const value = {
     currency,
     courseData,
-    avg_rating,
+    isMentor,
+    dummyTestimonials
+    
   };
 
   return (

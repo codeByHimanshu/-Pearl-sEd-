@@ -8,7 +8,7 @@ function CourseCard({ course }) {
 
   return (
     <Link to={'/course-detail/'+ course.id}
-    onclick={()=>scrollTo(0,0,)}
+    onClick={()=>scrollTo(0,0,)}
      className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       <img
         src={course.courseThumbnail}

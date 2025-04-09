@@ -16,10 +16,10 @@ function App() {
     <BrowserRouter>
       <div>
 
-        <Navbar />
+    
 
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           
 
             <Route path="course-detail" element={<CourseDetail />} />
