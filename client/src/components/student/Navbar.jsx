@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import "animate.css";
 
@@ -7,6 +7,7 @@ function Navbar() {
   const isCourseList = location.pathname.includes("/course-list");
   const { openSignIn } = useClerk();
   const { user } = useUser();
+ const navigate = useNavigate()
 
   return (
     <div
@@ -17,6 +18,7 @@ function Navbar() {
       <img
         src="/src/assets/loggo.svg"
         alt="logo"
+        onClick={()=>{navigate('/')}}
           className="h-20 w-64 animate__animated animate__zoomIn  rounded-xl"
       />
       <div className="flex items-center space-x-4">
