@@ -5,6 +5,7 @@ const companies = [
   { name: 'Microsoft', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg' },
   { name: 'Amazon', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
   { name: 'Facebook', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png' },
+  { name: 'Apple', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' },
   { name: 'Apple', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' }
 ];
 
@@ -20,7 +21,7 @@ function Companies() {
             <img
               src={company.logo}
               alt={company.name}
-              className="h-20 w-auto object-contain mx-auto"
+              className="h-16 w-auto object-contain mx-auto"
             />
           </div>
         ))}

@@ -10,7 +10,7 @@ export const dataTestimonial = [
   {
     name: "Aisha Verma",
     role: "UI/UX Designer @ Microsoft",
-    image:  "https://images.unsplash.com/photo-1603415526960-f7e0328fbee5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    image:  "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     rating: 4,
     feedback:
       "The smooth interface and smart features make Imagify a go-to for all my design projects. It saves me hours every week!",
@@ -18,7 +18,7 @@ export const dataTestimonial = [
   {
     name: "Carlos Mendoza",
     role: "Content Creator @ YouTube",
-    image:  "https://images.unsplash.com/photo-1590080876608-cf0c43c7b210?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    image:  "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     rating: 5,
     feedback:
       "Imagify is a lifesaver! From thumbnails to social posts, it's my creative secret weapon. Highly recommended!",
@@ -26,7 +26,7 @@ export const dataTestimonial = [
   {
     name: "Linda Zhao",
     role: "Marketing Manager @ HubSpot",
-    image:  "https://images.unsplash.com/photo-1590080876608-cf0c43c7b210?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    image: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     rating: 4,
     feedback:
       "Imagify helped our marketing team level up our brand visuals without needing to hire a designer every time.",
@@ -43,7 +43,7 @@ export const dummyCourses = [
     coursePrice: "4999",
     isPublished: true,
     mentor: "John Doe",
-    thumbnail: "https://i.ytimg.com/vi/GoXwIVyNvX0/maxresdefault.jpg",
+    thumbnail: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     enrolledStudents: ["user_123456789", "user_987654321", "user_567890123"],
     courseRatings: [
       {
@@ -67,7 +67,7 @@ export const dummyCourses = [
             lid: "201",
             lTitle: "Java Basics",
             duration: "15 mins",
-            lectURL: "https://www.youtube.com/watch?v=GoXwIVyNvX0",
+            lectURL: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
             isPreviewFree: true,
             lectOrder: 1,
           },
@@ -75,7 +75,7 @@ export const dummyCourses = [
             lid: "202",
             lTitle: "Setting up Java Environment",
             duration: "20 mins",
-            lectURL: "https://www.youtube.com/watch?v=grEKMHGYyns",
+            lectURL: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
             isPreviewFree: false,
             lectOrder: 2,
           },
@@ -90,7 +90,7 @@ export const dummyCourses = [
     coursePrice: "3999",
     isPublished: true,
     mentor: "Jane Smith",
-    thumbnail: "https://i.ytimg.com/vi/W6NZfCO5SIk/maxresdefault.jpg",
+    thumbnail: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     enrolledStudents: ["user_782786892209", "user_782786892289"],
     courseRatings: [
       {
