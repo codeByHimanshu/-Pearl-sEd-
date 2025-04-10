@@ -39,7 +39,7 @@ function Footer() {
       </div>
 
 
-      <div className="mt-10 text-center text-sm text-gray-500 border-t border-gray-700 pt-4">
+      <div className="mt-10 text-center text-sm text-gray-500 border-t border-gray-700 pt-3">
         © 2025 Grow&Learn. All rights reserved.
       </div>
     </footer>
