@@ -1,39 +1,69 @@
-import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import SearchBar from '../../components/student/SearchBar'
-
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import SearchBar from "../../components/student/SearchBar";
+import { AppContext } from "../../context/AppContext";
+import CourseCard from "../../components/student/CourseCard";
 
 function CoursesList() {
-  const navigate = useNavigate()
-  const { searchvalue } = useParams()
+  const navigate = useNavigate();
+  const { searchvalue } = useParams();
+  const { courseData } = useContext(AppContext);
+  const [filteredCourse, setFilteredCourse] = useState([]);
+
+  useEffect(() => {
+    if (courseData && courseData.length > 0) {
+      const tempData = courseData.slice();
+
+      searchvalue
+        ? setFilteredCourse(
+            tempData.filter((item) =>
+              item.courseTitle
+                .toLowerCase()
+                .includes(searchvalue.toLowerCase())
+            )
+          )
+        : setFilteredCourse(tempData);
+    }
+  }, [courseData, searchvalue]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 p-6">
-      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl p-6 animate__animated animate__fadeInUp">
-        {/* Header Section */}
-        <div className="mb-6 border-b pb-4">
-          <h1 className="text-3xl font-bold text-blue-700 mb-2 animate__animated animate__fadeInDown">
-            Course List
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-6">
+      <div className="max-w-6xl mx-auto backdrop-blur-md bg-white/90 shadow-xl rounded-2xl p-8 animate__animated animate__fadeInUp">
+     
+        <div className="mb-8 border-b pb-4">
+          <h1 className="text-4xl font-extrabold text-blue-800 mb-2 animate__animated animate__fadeInDown">
+            Explore Courses
           </h1>
           <p className="text-sm text-gray-600">
             <span
-              className="text-blue-500 hover:underline cursor-pointer transition-all duration-300"
-              onClick={() => navigate('/')}
+              className="text-blue-600 hover:underline cursor-pointer transition-all duration-300"
+              onClick={() => navigate("/")}
             >
               Home
-            </span>
-            {' / '}
-            <span className="text-gray-800">Course List</span>
+            </span>{" "}
+            / <span className="text-gray-800">Courses</span>
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="animate__animated animate__fadeIn">
+        <div className="mb-8 animate__animated animate__fadeIn">
           <SearchBar data={searchvalue} />
+        </div>
+
+     
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeInUp">
+          {filteredCourse.length > 0 ? (
+            filteredCourse.map((course, index) => (
+              <CourseCard key={index} course={course} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500 col-span-full">
+              No courses found.
+            </p>
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CoursesList
+export default CoursesList;
