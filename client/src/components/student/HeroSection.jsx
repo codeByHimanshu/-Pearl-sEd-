@@ -12,7 +12,7 @@ function HeroSection() {
           className="absolute top-0 left-0 w-[600px] opacity-10 -z-10"
           viewBox="0 0 600 600"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg"                                                      
         >
           <circle cx="300" cy="300" r="300" fill="#86EFAC" />
         </svg>
