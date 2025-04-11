@@ -15,7 +15,7 @@ function Navbar() {
     <div
       className={`flex items-center justify-between p-4 shadow-md animate__animated animate__fadeInDown ${
         isCourseList
-          ? "bg-gradient-to-r from-gray-800 to-gray-900"
+          ? "bg-gradient-to-r from-gray-200 to-gray-500 text-black"
           : "bg-gradient-to-r from-cyan-500 to-blue-500"
       }`}
     >

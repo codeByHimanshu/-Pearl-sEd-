@@ -15,19 +15,15 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-
-    
-
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          
 
-            <Route path="course-detail" element={<CourseDetail />} />
-            <Route path="course-list" element={<CoursesList />} />
-            <Route path="course-list/:search" element={<CoursesList />} />
-          
+          <Route path="course-detail" element={<CourseDetail />} />
+          <Route path="course-list" element={<CoursesList />} />
+          <Route path="course-list/:search" element={<CoursesList />} />
+
           <Route path="/mentor" element={<Mentor />}>
-           
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="add-course" element={<AddCourse />} />
             <Route path="my-course" element={<MyCourses />} />
@@ -35,7 +31,6 @@ function App() {
           </Route>
         </Routes>
       </div>
-      
     </BrowserRouter>
   );
 }

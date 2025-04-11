@@ -11,7 +11,7 @@ import Footer from "../../components/student/Footer";
 function Home() {
   return (
     <div className="bg-gray-100 ">
-      <Navbar />
+      
       <HeroSection />
       <Companies />
       <Courses />
