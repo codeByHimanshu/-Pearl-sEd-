@@ -11,7 +11,7 @@ function CourseCard({ course }) {
     onClick={()=>scrollTo(0,0,)}
      className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       <img
-        src={course.courseThumbnail}
+        src={course.thumbnail}
         alt="Course Thumbnail"
         className="w-full h-48 object-cover"
       />
