@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import SearchBar from "../../components/student/SearchBar";
 import { AppContext } from "../../context/AppContext";
 import CourseCard from "../../components/student/CourseCard";
+import Footer from "../../components/student/Footer"
 
 function CoursesList() {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ function CoursesList() {
   }, [courseData, searchvalue]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-6">
-      <div className="max-w-6xl mx-auto backdrop-blur-md bg-white/90 shadow-xl rounded-2xl p-8 animate__animated animate__fadeInUp">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+      <div className="max-w-6xl mx-auto backdrop-blur-md bg-white/90 shadow-xl  p-4 animate__animated animate__fadeInUp">
      
         <div className="mb-8 border-b pb-4">
           <h1 className="text-4xl font-extrabold text-blue-800 mb-2 animate__animated animate__fadeInDown">
@@ -62,6 +63,8 @@ function CoursesList() {
           )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

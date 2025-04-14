@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function SearchBar({ data }) {
-  const [searchValue, setSearchValue] = useState(data || "");
+  const [searchValue, setSearchValue] = useState(data);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -12,7 +12,7 @@ function SearchBar({ data }) {
     if (searchValue.trim() !== "") {
       navigate("/course-list/" + searchValue.trim());
     } else {
-      navigate("/course-list"); // fallback if blank
+      navigate("/course-list"); 
     }
   };
 
