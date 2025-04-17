@@ -278,227 +278,460 @@ export const dummyCourses = [
   }
 ,  
 {
-  id: "849889489",
-  courseTitle: "Data Structures & Algorithms",
-  courseDescription: "Crack coding interviews with strong DSA concepts.",
-  coursePrice: "7499",
-  isPublished: true,
-  mentor: "Robert Langdon",
-  thumbnail: "https://images.unsplash.com/photo-1537432376769-00a492f3b63e?auto=format&fit=crop&w=100&q=80",
-  enrolledStudents: [],
-  courseRatings: [
-    { userId: "user_90001", rating: 5.0, id: "rating_015" }
+  "id": "849889489",
+  "courseTitle": "Data Structures & Algorithms",
+  "courseDescription": "Crack coding interviews with strong DSA concepts.",
+  "coursePrice": "7499",
+  "isPublished": true,
+  "mentor": "Robert Langdon",
+  "thumbnail": "https://images.unsplash.com/photo-1537432376769-00a492f3b63e?auto=format&fit=crop&w=100&q=80",
+  "enrolledStudents": [],
+  "courseRatings": [
+    { "userId": "user_90001", "rating": 5.0, "id": "rating_015" }
   ],
-  courseContent: [
+  "courseContent": [
     {
-      chId: "409",
-      chOrder: 1,
-      chTitle: "Intro to DSA",
-      chContent: [
+      "chId": "409",
+      "chOrder": 1,
+      "chTitle": "Intro to DSA",
+      "chContent": [
         {
-          lid: "517",
-          lTitle: "Arrays & Linked Lists",
-          duration: "19 mins",
-          lectURL: "https://www.youtube.com/watch?v=W8xlhZlR4n4",
-          isPreviewFree: true,
-          lectOrder: 1,
+          "lid": "517",
+          "lTitle": "Arrays & Linked Lists",
+          "duration": "19 mins",
+          "lectURL": "https://www.youtube.com/watch?v=W8xlhZlR4n4",
+          "isPreviewFree": true,
+          "lectOrder": 1
         },
         {
-          lid: "518",
-          lTitle: "Stacks & Queues",
-          duration: "21 mins",
-          lectURL: "https://www.youtube.com/watch?v=wnYIHZ_5d8w",
-          isPreviewFree: false,
-          lectOrder: 2,
-        },
-      ],
+          "lid": "518",
+          "lTitle": "Stacks & Queues",
+          "duration": "21 mins",
+          "lectURL": "https://www.youtube.com/watch?v=wnYIHZ_5d8w",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
     },
+    {
+      "chId": "410",
+      "chOrder": 2,
+      "chTitle": "Trees & Graphs",
+      "chContent": [
+        {
+          "lid": "519",
+          "lTitle": "Binary Trees",
+          "duration": "25 mins",
+          "lectURL": "https://www.youtube.com/watch?v=LR0vMb7-pxI",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "520",
+          "lTitle": "Graph Traversal",
+          "duration": "30 mins",
+          "lectURL": "https://www.youtube.com/watch?v=6JxzvHMYiXM",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "411",
+      "chOrder": 3,
+      "chTitle": "Sorting & Searching Algorithms",
+      "chContent": [
+        {
+          "lid": "521",
+          "lTitle": "Quick Sort & Merge Sort",
+          "duration": "35 mins",
+          "lectURL": "https://www.youtube.com/watch?v=CO8Jx3_UQjo",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "522",
+          "lTitle": "Binary Search Algorithm",
+          "duration": "28 mins",
+          "lectURL": "https://www.youtube.com/watch?v=gg9J6KSOyXk",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "412",
+      "chOrder": 4,
+      "chTitle": "Dynamic Programming",
+      "chContent": [
+        {
+          "lid": "523",
+          "lTitle": "Intro to Dynamic Programming",
+          "duration": "40 mins",
+          "lectURL": "https://www.youtube.com/watch?v=oBt53YbR9Kk",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "524",
+          "lTitle": "Knapsack Problem",
+          "duration": "38 mins",
+          "lectURL": "https://www.youtube.com/watch?v=YlTxdOej8DQ",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    }
+  ]
+}
+
+,
+{
+  "id": "849889478",
+  "courseTitle": "Mastering Java",
+  "courseDescription": "Learn Java from scratch and build real-world applications.",
+  "coursePrice": "4999",
+  "isPublished": true,
+  "mentor": "John Doe",
+  "thumbnail": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+  "enrolledStudents": ["user_123456789", "user_987654321", "user_567890123"],
+  "courseRatings": [
+    {
+      "userId": "user_789001",
+      "rating": 4.5,
+      "id": "rating_001"
+    },
+    {
+      "userId": "user_789002",
+      "rating": 4.8,
+      "id": "rating_002"
+    }
   ],
+  "courseContent": [
+    {
+      "chId": "101",
+      "chOrder": 1,
+      "chTitle": "Introduction to Java",
+      "chContent": [
+        {
+          "lid": "201",
+          "lTitle": "Java Basics",
+          "duration": "15 mins",
+          "lectURL": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "202",
+          "lTitle": "Setting up Java Environment",
+          "duration": "20 mins",
+          "lectURL": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "102",
+      "chOrder": 2,
+      "chTitle": "Core Java Concepts",
+      "chContent": [
+        {
+          "lid": "203",
+          "lTitle": "Data Types and Variables",
+          "duration": "18 mins",
+          "lectURL": "https://www.youtube.com/watch?v=2KJX3zZVXYw",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "204",
+          "lTitle": "Control Structures",
+          "duration": "22 mins",
+          "lectURL": "https://www.youtube.com/watch?v=UKBYHV6jB1s",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "103",
+      "chOrder": 3,
+      "chTitle": "Object-Oriented Programming",
+      "chContent": [
+        {
+          "lid": "205",
+          "lTitle": "Classes and Objects",
+          "duration": "25 mins",
+          "lectURL": "https://www.youtube.com/watch?v=Qz0efX8S2dw",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "206",
+          "lTitle": "Inheritance and Polymorphism",
+          "duration": "30 mins",
+          "lectURL": "https://www.youtube.com/watch?v=aZ3FYR8TXu0",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "104",
+      "chOrder": 4,
+      "chTitle": "Java Collections Framework",
+      "chContent": [
+        {
+          "lid": "207",
+          "lTitle": "Lists and Sets",
+          "duration": "32 mins",
+          "lectURL": "https://www.youtube.com/watch?v=ztO6Olbfpd8",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "208",
+          "lTitle": "Maps and Queues",
+          "duration": "28 mins",
+          "lectURL": "https://www.youtube.com/watch?v=F8rRglfa7uw",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    }
+  ]
 }
 ,
-  {
-    id: "849889478",
-    courseTitle: "Mastering Java",
-    courseDescription:
-      "Learn Java from scratch and build real-world applications.",
-    coursePrice: "4999",
-    isPublished: true,
-    mentor: "John Doe",
-    thumbnail: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    enrolledStudents: ["user_123456789", "user_987654321", "user_567890123"],
-    courseRatings: [
-      {
-        userId: "user_789001",
-        rating: 4.5,
-        id: "rating_001",
-      },
-      {
-        userId: "user_789002",
-        rating: 4.8,
-        id: "rating_002",
-      },
-    ],
-    courseContent: [
-      {
-        chId: "101",
-        chOrder: 1,
-        chTitle: "Introduction to Java",
-        chContent: [
-          {
-            lid: "201",
-            lTitle: "Java Basics",
-            duration: "15 mins",
-            lectURL: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-            isPreviewFree: true,
-            lectOrder: 1,
-          },
-          {
-            lid: "202",
-            lTitle: "Setting up Java Environment",
-            duration: "20 mins",
-            lectURL: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-            isPreviewFree: false,
-            lectOrder: 2,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "849889479",
-    courseTitle: "JavaScript for Beginners",
-    courseDescription: "Learn JavaScript step-by-step with practical examples.",
-    coursePrice: "3999",
-    isPublished: true,
-    mentor: "Jane Smith",
-    thumbnail: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    enrolledStudents: ["user_782786892209", "user_782786892289"],
-    courseRatings: [
-      {
-        userId: "user_123123",
-        rating: 5.0,
-        id: "rating_003",
-      },
-    ],
-    courseContent: [
-      {
-        chId: "201",
-        chOrder: 1,
-        chTitle: "Introduction to JavaScript",
-        chContent: [
-          {
-            lid: "301",
-            lTitle: "JavaScript Basics",
-            duration: "18 mins",
-            lectURL: "https://www.youtube.com/watch?v=W6NZfCO5SIk",
-            isPreviewFree: true,
-            lectOrder: 1,
-          },
-          {
-            lid: "302",
-            lTitle: "Data Types & Operators",
-            duration: "22 mins",
-            lectURL: "https://www.youtube.com/watch?v=upDLs1sn7g4",
-            isPreviewFree: false,
-            lectOrder: 2,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "849889480",
-    courseTitle: "Python for Data Science",
-    courseDescription:
-      "Learn Python programming for data analysis, visualization, and ML.",
-    coursePrice: "5999",
-    isPublished: true,
-    mentor: "Alex Johnson",
-    thumbnail: "https://i.ytimg.com/vi/rfscVS0vtbw/maxresdefault.jpg",
-    enrolledStudents: ["user_908234567", "user_112233445"],
-    courseRatings: [
-      {
-        userId: "user_112233",
-        rating: 4.9,
-        id: "rating_004",
-      },
-      {
-        userId: "user_445566",
-        rating: 4.7,
-        id: "rating_005",
-      },
-    ],
-    courseContent: [
-      {
-        chId: "301",
-        chOrder: 1,
-        chTitle: "Introduction to Python",
-        chContent: [
-          {
-            lid: "401",
-            lTitle: "Python Basics",
-            duration: "20 mins",
-            lectURL: "https://www.youtube.com/watch?v=rfscVS0vtbw",
-            isPreviewFree: true,
-            lectOrder: 1,
-          },
-          {
-            lid: "402",
-            lTitle: "Control Flow & Functions",
-            duration: "25 mins",
-            lectURL: "https://www.youtube.com/watch?v=t8pPdKYpowI",
-            isPreviewFree: false,
-            lectOrder: 2,
-          },
-        ],
-      },
-      {
-        chId: "301",
-        chOrder: 1,
-        chTitle: "Introduction to Python",
-        chContent: [
-          {
-            lid: "401",
-            lTitle: "Python Basics",
-            duration: "20 mins",
-            lectURL: "https://www.youtube.com/watch?v=rfscVS0vtbw",
-            isPreviewFree: true,
-            lectOrder: 1,
-          },
-          {
-            lid: "402",
-            lTitle: "Control Flow & Functions",
-            duration: "25 mins",
-            lectURL: "https://www.youtube.com/watch?v=t8pPdKYpowI",
-            isPreviewFree: false,
-            lectOrder: 2,
-          },
-        ],
-      },
-      {
-        chId: "301",
-        chOrder: 1,
-        chTitle: "Introduction to Python",
-        chContent: [
-          {
-            lid: "401",
-            lTitle: "Python Basics",
-            duration: "20 mins",
-            lectURL: "https://www.youtube.com/watch?v=rfscVS0vtbw",
-            isPreviewFree: true,
-            lectOrder: 1,
-          },
-          {
-            lid: "402",
-            lTitle: "Control Flow & Functions",
-            duration: "25 mins",
-            lectURL: "https://www.youtube.com/watch?v=t8pPdKYpowI",
-            isPreviewFree: false,
-            lectOrder: 2,
-          },
-        ],
-      },
-    ],
-  },
+{
+  "id": "849889479",
+  "courseTitle": "JavaScript for Beginners",
+  "courseDescription": "Learn JavaScript step-by-step with practical examples.",
+  "coursePrice": "3999",
+  "isPublished": true,
+  "mentor": "Jane Smith",
+  "thumbnail": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+  "enrolledStudents": ["user_782786892209", "user_782786892289"],
+  "courseRatings": [
+    {
+      "userId": "user_123123",
+      "rating": 5.0,
+      "id": "rating_003"
+    }
+  ],
+  "courseContent": [
+    {
+      "chId": "201",
+      "chOrder": 1,
+      "chTitle": "Introduction to JavaScript",
+      "chContent": [
+        {
+          "lid": "301",
+          "lTitle": "JavaScript Basics",
+          "duration": "18 mins",
+          "lectURL": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "302",
+          "lTitle": "Data Types & Operators",
+          "duration": "22 mins",
+          "lectURL": "https://www.youtube.com/watch?v=upDLs1sn7g4",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "202",
+      "chOrder": 2,
+      "chTitle": "Control Flow in JavaScript",
+      "chContent": [
+        {
+          "lid": "303",
+          "lTitle": "Conditional Statements (if, else, switch)",
+          "duration": "20 mins",
+          "lectURL": "https://www.youtube.com/watch?v=R9dZ7Hc7z3o",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "304",
+          "lTitle": "Loops (for, while, do-while)",
+          "duration": "25 mins",
+          "lectURL": "https://www.youtube.com/watch?v=Rye_vJ5HEek",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "203",
+      "chOrder": 3,
+      "chTitle": "Functions & Objects",
+      "chContent": [
+        {
+          "lid": "305",
+          "lTitle": "Functions in JavaScript",
+          "duration": "24 mins",
+          "lectURL": "https://www.youtube.com/watch?v=f6O8p5O2fCg",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "306",
+          "lTitle": "Objects and Arrays",
+          "duration": "26 mins",
+          "lectURL": "https://www.youtube.com/watch?v=eG9hdnoZCCY",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "204",
+      "chOrder": 4,
+      "chTitle": "DOM Manipulation",
+      "chContent": [
+        {
+          "lid": "307",
+          "lTitle": "Introduction to DOM",
+          "duration": "23 mins",
+          "lectURL": "https://www.youtube.com/watch?v=0ik6X4DJKCc",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "308",
+          "lTitle": "Manipulating HTML Elements",
+          "duration": "28 mins",
+          "lectURL": "https://www.youtube.com/watch?v=IZKxJcMOcug",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "id": "849889480",
+  "courseTitle": "Python for Data Science",
+  "courseDescription": "Learn Python programming for data analysis, visualization, and ML.",
+  "coursePrice": "5999",
+  "isPublished": true,
+  "mentor": "Alex Johnson",
+  "thumbnail": "https://i.ytimg.com/vi/rfscVS0vtbw/maxresdefault.jpg",
+  "enrolledStudents": ["user_908234567", "user_112233445"],
+  "courseRatings": [
+    {
+      "userId": "user_112233",
+      "rating": 4.9,
+      "id": "rating_004"
+    },
+    {
+      "userId": "user_445566",
+      "rating": 4.7,
+      "id": "rating_005"
+    }
+  ],
+  "courseContent": [
+    {
+      "chId": "301",
+      "chOrder": 1,
+      "chTitle": "Introduction to Python",
+      "chContent": [
+        {
+          "lid": "401",
+          "lTitle": "Python Basics",
+          "duration": "20 mins",
+          "lectURL": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "402",
+          "lTitle": "Control Flow & Functions",
+          "duration": "25 mins",
+          "lectURL": "https://www.youtube.com/watch?v=t8pPdKYpowI",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "302",
+      "chOrder": 2,
+      "chTitle": "Data Structures in Python",
+      "chContent": [
+        {
+          "lid": "403",
+          "lTitle": "Lists and Tuples",
+          "duration": "18 mins",
+          "lectURL": "https://www.youtube.com/watch?v=ohCDWZgNIU0",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "404",
+          "lTitle": "Dictionaries and Sets",
+          "duration": "22 mins",
+          "lectURL": "https://www.youtube.com/watch?v=daefaLgNkw0",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "303",
+      "chOrder": 3,
+      "chTitle": "Introduction to Data Science",
+      "chContent": [
+        {
+          "lid": "405",
+          "lTitle": "Introduction to NumPy",
+          "duration": "20 mins",
+          "lectURL": "https://www.youtube.com/watch?v=QUT1VHiLmmI",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "406",
+          "lTitle": "Data Visualization with Matplotlib",
+          "duration": "25 mins",
+          "lectURL": "https://www.youtube.com/watch?v=3Xc3CA655Y4",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    },
+    {
+      "chId": "304",
+      "chOrder": 4,
+      "chTitle": "Machine Learning with Python",
+      "chContent": [
+        {
+          "lid": "407",
+          "lTitle": "Introduction to Scikit-Learn",
+          "duration": "22 mins",
+          "lectURL": "https://www.youtube.com/watch?v=0Lt9P-rw6mA",
+          "isPreviewFree": true,
+          "lectOrder": 1
+        },
+        {
+          "lid": "408",
+          "lTitle": "Building a Simple ML Model",
+          "duration": "28 mins",
+          "lectURL": "https://www.youtube.com/watch?v=LHBE6Q9XlzI",
+          "isPreviewFree": false,
+          "lectOrder": 2
+        }
+      ]
+    }
+  ]
+}
+
+
 
 ];
