@@ -59,7 +59,7 @@ export const dummyCourses = [
           {
             "lid": "513",
             "lTitle": "Hacking Basics",
-            "duration": "20 mins",
+            "duration": 20,
             "lectURL": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
             "isPreviewFree": true,
             "lectOrder": 1
@@ -67,7 +67,7 @@ export const dummyCourses = [
           {
             "lid": "514",
             "lTitle": "Common Attacks",
-            "duration": "25 mins",
+            "duration": 20,
             "lectURL": "https://www.youtube.com/watch?v=UtjZGkYgr-Q",
             "isPreviewFree": false,
             "lectOrder": 2
@@ -82,7 +82,7 @@ export const dummyCourses = [
           {
             "lid": "515",
             "lTitle": "What is Footprinting?",
-            "duration": "18 mins",
+            "duration": 18,
             "lectURL": "https://www.youtube.com/watch?v=6fnDab2iRYE",
             "isPreviewFree": true,
             "lectOrder": 1
@@ -90,7 +90,7 @@ export const dummyCourses = [
           {
             "lid": "516",
             "lTitle": "Reconnaissance Techniques",
-            "duration": "22 mins",
+            "duration": 20,
             "lectURL": "https://www.youtube.com/watch?v=nQ3pQx71zmw",
             "isPreviewFree": false,
             "lectOrder": 2
@@ -105,7 +105,7 @@ export const dummyCourses = [
           {
             "lid": "517",
             "lTitle": "Understanding Networks",
-            "duration": "15 mins",
+            "duration": 20,
             "lectURL": "https://www.youtube.com/watch?v=FEpGFvjyGdM",
             "isPreviewFree": true,
             "lectOrder": 1
@@ -128,7 +128,7 @@ export const dummyCourses = [
           {
             "lid": "519",
             "lTitle": "System Exploits",
-            "duration": "28 mins",
+            "duration": 20,
             "lectURL": "https://www.youtube.com/watch?v=5vFjT_mBQhs",
             "isPreviewFree": true,
             "lectOrder": 1

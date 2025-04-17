@@ -68,9 +68,12 @@ function CourseDetail() {
 
         <div>
           {courseDetail.courseContent.map((chapter, index) => (
-            <div key={index} className="flex items-center gap-4 py-3 px-4 hover:bg-blue-50 rounded-xl transition-colors">
-              <h5 className="text-lg font-semibold text-blue-700">{chapter.chTitle}</h5>
-              <FiChevronDown className="text-xl text-blue-500" />
+            <div key={index} className="flex items-center justify-between gap-4 py-3 px-4 hover:bg-blue-50 rounded-xl transition-colors">
+           <div className="flex flex-row">
+           <FiChevronDown className="text-xl text-blue-500" /> &nbsp;
+           <h5 className="text-lg font-semibold text-blue-700">{chapter.chTitle}</h5>
+           </div>
+              <p className="text-sm font-semibold ">{chapter.chContent.length} - lecture {chapterTime(chapter)}</p>
             </div>
           ))}
         </div>
@@ -79,7 +82,7 @@ function CourseDetail() {
 
     {/* Right Column */}
     <div className="md:w-1/3 bg-white bg-opacity-80 p-6 rounded-xl shadow-lg backdrop-blur-md animate__animated animate__fadeInRight">
-      {/* Additional content for the right column can be added here */}
+   
     </div>
   </div>
 </div>

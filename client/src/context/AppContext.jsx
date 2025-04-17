@@ -19,22 +19,26 @@ export const AppContextProvider = (props) => {
   }, []);
 
 
-  //  duration of a chapter
+  // Function to get duration of a chapter
   const chapterTime = (chapter) => {
+  
     let time = 0;
     chapter.chContent.forEach((lecture) => {
-      time += lecture.duration;
+      const duration = lecture.duration;
+      time += duration;
     });
-    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
+  
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"], round: true });
   };
+  
   
   //  total duration of the course
   const courseDuration = (course) => {
     let time = 0;
     course.courseContent.forEach((chapter) => {
-      chapter.chContent.forEach((lecture) => {
+      
         time += lecture.duration;
-      });
+      
     });
     return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
   };
