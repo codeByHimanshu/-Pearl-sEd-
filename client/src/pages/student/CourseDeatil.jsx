@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../../components/student/Loading";
 import { AppContext } from "../../context/AppContext";
 import { FiChevronDown } from "react-icons/fi";
+import { BsFillPlayFill } from "react-icons/bs";
 import humanizeDuration from "humanize-duration";
 
 function CourseDetail() {
@@ -67,56 +68,62 @@ function CourseDetail() {
                 Course Details
               </h2>
 
-              <div>
+              <div className="space-y-6">
                 {courseDetail.courseContent.map((chapter, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between gap-4 py-3 px-4 hover:bg-blue-50 rounded-xl transition-colors"
+                    className="bg-white rounded-xl shadow-md p-4 transition-colors hover:bg-blue-50"
                   >
-                    <div className="flex flex-row">
-                      <FiChevronDown className="text-xl text-blue-500" /> &nbsp;
-                      <h5 className="text-lg font-semibold text-blue-700">
-                        {chapter.chTitle}
-                      </h5>
+                
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2 text-blue-700">
+                        <FiChevronDown className="text-xl text-blue-500" />
+                        <h5 className="text-lg font-semibold">
+                          {chapter.chTitle}
+                        </h5>
+                      </div>
+                      <p className="text-sm font-medium text-gray-600">
+                        {chapter.chContent.length} Lectures •{" "}
+                        {chapterTime(chapter)}
+                      </p>
                     </div>
-                    <p className="text-sm font-semibold ">
-                      {chapter.chContent.length} - lecture{" "}
-                      {chapterTime(chapter)}
-                    </p>
+
+                  
+                    <ul className="space-y-4">
+                      {chapter.chContent.map((lecture, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition"
+                        >
+                          <div className="mt-1 text-blue-600">
+                            <BsFillPlayFill className="text-xl" />
+                          </div>
+                          <div className="flex flex-col">
+                            <p className="font-semibold text-gray-800">
+                              {lecture.lTitle}
+                            </p>
+                            <div className="flex items-center text-sm text-gray-600 mt-1 gap-4">
+                              {lecture.isPreviewFree && (
+                                <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                                  Preview
+                                </span>
+                              )}
+                              <p>
+                                {humanizeDuration(
+                                  lecture.duration * 60 * 1000,
+                                  {
+                                    units: ["h", "m"],
+                                    round: true,
+                                  }
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
-                <div className="p-4 bg-white rounded-lg shadow-md">
-                  <ul className="space-y-4">
-                    {courseDetail.courseContent.chContent.map((lecture, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition"
-                      >
-                        <div className="mt-1 text-blue-600">
-                          <FaPlay className="text-lg" />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="font-semibold text-gray-800">
-                            {lecture.lTitle}
-                          </p>
-                          <div className="flex items-center text-sm text-gray-600 mt-1 gap-4">
-                            {lecture.isPreviewFree && (
-                              <p className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
-                                Preview
-                              </p>
-                            )}
-                            <p>
-                              {humanizeDuration(lecture.duration * 60 * 1000, {
-                                units: ["h", "m"],
-                                round: true,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
