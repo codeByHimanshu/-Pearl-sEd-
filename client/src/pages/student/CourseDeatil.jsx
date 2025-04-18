@@ -2,16 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/student/Loading";
 import { AppContext } from "../../context/AppContext";
-import { FiChevronDown,FiChevronRight } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight, FiClock } from "react-icons/fi";
 import { BsFillPlayFill } from "react-icons/bs";
 import humanizeDuration from "humanize-duration";
 
 function CourseDetail() {
   const { id } = useParams();
-  const { courseData, courseDuration, numberOfLectures, chapterTime } =
-    useContext(AppContext);
+  const {
+    courseData,
+    courseDuration,
+    numberOfLectures,
+    chapterTime,
+    currency,
+  } = useContext(AppContext);
   const [courseDetail, setCourseDetail] = useState(null);
   const [openChapter, setOpenChapter] = useState(null);
+  const [alreadyEnrolled, setAlreadyEnrolled] = useState(true);
 
   useEffect(() => {
     const fetchCourseDetail = () => {
@@ -28,9 +34,9 @@ function CourseDetail() {
   return courseDetail ? (
     <>
       <div className="min-h-screen bg-gradient-to-br from-blue-200 via-light-blue-300 to-white p-8 text-gray-800 animate__animated animate__fadeIn">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+        <div className="max-w-6xl  mx-auto flex flex-col md:flex-row gap-8">
           {/* Left Column */}
-          <div className="md:w-2/3  p-6 rounded-xl  animate__animated animate__fadeInLeft">
+          <div className="md:w-2/3 bg-white p-6 rounded-xl  animate__animated animate__fadeInLeft">
             <h1 className="text-4xl font-semibold mb-6 text-blue-800">
               {courseDetail.courseTitle}
             </h1>
@@ -77,7 +83,7 @@ function CourseDetail() {
                 {courseDetail.courseContent.map((chapter, index) => (
                   <div
                     key={index}
-                    className="bg-white border rounded-xl cursor-pointer shadow-md p-4 transition-colors hover:bg-blue-50"
+                    className="bg-white  cursor-pointer shadow-md p-4 transition-colors hover:bg-blue-50"
                   >
                     <div
                       onClick={() => toggleChapter(index)}
@@ -141,7 +147,41 @@ function CourseDetail() {
           </div>
 
           {/* Right Column */}
-          <div className="md:w-1/3 bg-white bg-opacity-80 p-6 rounded-xl shadow-lg backdrop-blur-md animate__animated animate__fadeInRight"></div>
+          <div className="md:w-1/3 h-auto  p-6 bg-white shadow-lg rounded-lg backdrop-blur-md animate__animated animate__fadeInRight">
+            <div className="max-w-sm   overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <img
+                src={courseDetail.thumbnail}
+                alt="Course Thumbnail"
+                className="w-full h-48 object-cover"
+              />
+              <p className="text-lg">
+                {currency} {courseDetail.coursePrice} <br />
+              </p>
+              <div className="flex items-center justify-between gap-3 font-bold">
+                <FiClock />
+                {courseDuration(courseDetail)}  lectures
+                {numberOfLectures(courseDetail)} 
+              </div>
+
+              <button className="bg-blue-700 text-white rounded-lg w-full p-2 mt-2">{alreadyEnrolled ? 'Enroll Now' : 'alraedy enrolled'}</button>
+            </div>
+
+                <span className="text-green-700 text-lg py-4">only few seats left ! hurry up</span> <br /> 
+            <div className="mt-5">
+           <p className="font-bold">Benifits with course :</p>
+
+           <ul>
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li> <br />
+            <li>one time purchase lifetime access</li>
+          
+           </ul>
+            </div>
+          </div>
         </div>
       </div>
     </>

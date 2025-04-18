@@ -35,24 +35,39 @@ export const AppContextProvider = (props) => {
   //  total duration of the course
   const courseDuration = (course) => {
     let time = 0;
-    course.courseContent.forEach((chapter) => {
-      
-        time += lecture.duration;
-      
+  
+    if (Array.isArray(course?.courseContent)) {
+      course.courseContent.forEach((chapter) => {
+        if (Array.isArray(chapter.chContent)) {
+          chapter.chContent.forEach((lecture) => {
+            time += lecture.duration || 0;
+          });
+        }
+      });
+    }
+  
+    return humanizeDuration(time * 60 * 1000, {
+      units: ["h", "m"],
+      round: true,
     });
-    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
   };
+  
   
   //  total number of lectures in the course
   const numberOfLectures = (course) => {
     let totalLectures = 0;
-    course.courseContent.forEach((chapter) => {
-      if (Array.isArray(chapter.chContent)) {
-        totalLectures += chapter.chContent.length;
-      }
-    });
+  
+    if (course && Array.isArray(course.courseContent)) {
+      course.courseContent.forEach((chapter) => {
+        if (Array.isArray(chapter.chContent)) {
+          totalLectures += chapter.chContent.length;
+        }
+      });
+    }
+  
     return totalLectures;
   };
+  
   
 
   const value = {

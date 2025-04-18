@@ -417,7 +417,7 @@ export const dummyCourses = [
           "lid": "201",
           "lTitle": "Java Basics",
           "duration": "15 mins",
-          "lectURL": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          "lectURL": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y291cnNlfGVufDB8fDB8fHww",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -425,7 +425,7 @@ export const dummyCourses = [
           "lid": "202",
           "lTitle": "Setting up Java Environment",
           "duration": "20 mins",
-          "lectURL": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          "lectURL": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y291cnNlfGVufDB8fDB8fHww",
           "isPreviewFree": false,
           "lectOrder": 2
         }
