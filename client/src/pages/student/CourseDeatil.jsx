@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/student/Loading";
 import { AppContext } from "../../context/AppContext";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown,FiChevronRight } from "react-icons/fi";
 import { BsFillPlayFill } from "react-icons/bs";
 import humanizeDuration from "humanize-duration";
 
@@ -11,6 +11,7 @@ function CourseDetail() {
   const { courseData, courseDuration, numberOfLectures, chapterTime } =
     useContext(AppContext);
   const [courseDetail, setCourseDetail] = useState(null);
+  const [openChapter, setOpenChapter] = useState(null);
 
   useEffect(() => {
     const fetchCourseDetail = () => {
@@ -20,12 +21,16 @@ function CourseDetail() {
     fetchCourseDetail();
   }, [id, courseData]);
 
+  const toggleChapter = (index) => {
+    setOpenChapter(openChapter === index ? null : index);
+  };
+
   return courseDetail ? (
     <>
       <div className="min-h-screen bg-gradient-to-br from-blue-200 via-light-blue-300 to-white p-8 text-gray-800 animate__animated animate__fadeIn">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
           {/* Left Column */}
-          <div className="md:w-2/3 bg-white bg-opacity-80 p-6 rounded-xl shadow-lg backdrop-blur-md animate__animated animate__fadeInLeft">
+          <div className="md:w-2/3  p-6 rounded-xl  animate__animated animate__fadeInLeft">
             <h1 className="text-4xl font-semibold mb-6 text-blue-800">
               {courseDetail.courseTitle}
             </h1>
@@ -72,12 +77,18 @@ function CourseDetail() {
                 {courseDetail.courseContent.map((chapter, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-xl shadow-md p-4 transition-colors hover:bg-blue-50"
+                    className="bg-white border rounded-xl cursor-pointer shadow-md p-4 transition-colors hover:bg-blue-50"
                   >
-                
-                    <div className="flex items-center justify-between mb-4">
+                    <div
+                      onClick={() => toggleChapter(index)}
+                      className="flex items-center border rounded-lg p-2 justify-between "
+                    >
                       <div className="flex items-center gap-2 text-blue-700">
-                        <FiChevronDown className="text-xl text-blue-500" />
+                        {openChapter === index ? (
+                          <FiChevronDown className="text-xl text-blue-500" />
+                        ) : (
+                          <FiChevronRight className="text-xl text-blue-500" />
+                        )}
                         <h5 className="text-lg font-semibold">
                           {chapter.chTitle}
                         </h5>
@@ -88,40 +99,41 @@ function CourseDetail() {
                       </p>
                     </div>
 
-                  
-                    <ul className="space-y-4">
-                      {chapter.chContent.map((lecture, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition"
-                        >
-                          <div className="mt-1 text-blue-600">
-                            <BsFillPlayFill className="text-xl" />
-                          </div>
-                          <div className="flex flex-col">
-                            <p className="font-semibold text-gray-800">
-                              {lecture.lTitle}
-                            </p>
-                            <div className="flex items-center text-sm text-gray-600 mt-1 gap-4">
-                              {lecture.isPreviewFree && (
-                                <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
-                                  Preview
-                                </span>
-                              )}
-                              <p>
-                                {humanizeDuration(
-                                  lecture.duration * 60 * 1000,
-                                  {
-                                    units: ["h", "m"],
-                                    round: true,
-                                  }
-                                )}
-                              </p>
+                    {openChapter === index && (
+                      <ul className="mt-4 space-y-4">
+                        {chapter.chContent.map((lecture, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition"
+                          >
+                            <div className="mt-1 text-blue-600">
+                              <BsFillPlayFill className="text-xl" />
                             </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                            <div className="flex flex-col">
+                              <p className="font-semibold text-gray-800">
+                                {lecture.lTitle}
+                              </p>
+                              <div className="flex items-center text-sm text-gray-600 mt-1 gap-4">
+                                {lecture.isPreviewFree && (
+                                  <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                                    Preview
+                                  </span>
+                                )}
+                                <p>
+                                  {humanizeDuration(
+                                    lecture.duration * 60 * 1000,
+                                    {
+                                      units: ["h", "m"],
+                                      round: true,
+                                    }
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
