@@ -284,7 +284,7 @@ export const dummyCourses = [
   "coursePrice": "7499",
   "isPublished": true,
   "mentor": "Robert Langdon",
-  "thumbnail": "https://images.unsplash.com/photo-1537432376769-00a492f3b63e?auto=format&fit=crop&w=100&q=80",
+  "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCCQP1bgQsbocOoRMhe5be0WM2_vawSTHlg&s",
   "enrolledStudents": [],
   "courseRatings": [
     { "userId": "user_90001", "rating": 5.0, "id": "rating_015" }

@@ -168,15 +168,15 @@ function CourseDetail() {
 
                 <span className="text-green-700 text-lg py-4">only few seats left ! hurry up</span> <br /> 
             <div className="mt-5">
-           <p className="font-bold">Benifits with course :</p>
+           <p className="font-bold">Benifits with course :</p> <br />
 
-           <ul>
-            <li>one time purchase lifetime access</li> <br />
-            <li>get connected with mentors </li> <br />
-            <li>free test series for mncs</li> <br />
-            <li>coding challenges practice with rewards</li> <br />
-            <li>fast your lrearnings with others </li> <br />
-            <li>latest tech updates </li> <br />
+           <ul  className="list-disc p-4 text-grey-900 text-xl font-serif">
+            <li>one time purchase lifetime access</li>
+            <li>get connected with mentors </li>
+            <li>free test series for mncs</li>
+            <li>coding challenges practice with rewards</li>
+            <li>fast your lrearnings with others </li>
+            <li>latest tech updates </li>
           
           
            </ul>
