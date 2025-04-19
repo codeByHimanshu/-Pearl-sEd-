@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/student/Loading";
+import Footer from "../../components/student/Footer";
 import { AppContext } from "../../context/AppContext";
 import { FiChevronDown, FiChevronRight, FiClock } from "react-icons/fi";
 import { BsFillPlayFill } from "react-icons/bs";
@@ -33,9 +34,9 @@ function CourseDetail() {
 
   return courseDetail ? (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-200 via-light-blue-300 to-white p-8 text-gray-800 animate__animated animate__fadeIn">
+      <div className=" bg-gradient-to-br from-blue-200 via-light-blue-300 to-white p-8 text-gray-800 animate__animated animate__fadeIn">
         <div className="max-w-6xl  mx-auto flex flex-col md:flex-row gap-8">
-          {/* Left Column */}
+      
           <div className="md:w-2/3 bg-white p-6 rounded-xl  animate__animated animate__fadeInLeft">
             <h1 className="text-4xl font-semibold mb-6 text-blue-800">
               {courseDetail.courseTitle}
@@ -184,6 +185,7 @@ function CourseDetail() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   ) : (
     <Loading />
