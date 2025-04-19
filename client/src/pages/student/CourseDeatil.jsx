@@ -172,12 +172,12 @@ function CourseDetail() {
 
            <ul>
             <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li> <br />
-            <li>one time purchase lifetime access</li>
+            <li>get connected with mentors </li> <br />
+            <li>free test series for mncs</li> <br />
+            <li>coding challenges practice with rewards</li> <br />
+            <li>fast your lrearnings with others </li> <br />
+            <li>latest tech updates </li> <br />
+          
           
            </ul>
             </div>
