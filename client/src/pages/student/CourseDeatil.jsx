@@ -5,7 +5,8 @@ import Footer from "../../components/student/Footer";
 import { AppContext } from "../../context/AppContext";
 import { FiChevronDown, FiChevronRight, FiClock } from "react-icons/fi";
 import { BsFillPlayFill } from "react-icons/bs";
-import humanizeDuration from "humanize-duration";
+import humanizeDuration from "humanize-duration"; 
+import YouTube from 'react-youtube'
 
 function CourseDetail() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ function CourseDetail() {
   const [courseDetail, setCourseDetail] = useState(null);
   const [openChapter, setOpenChapter] = useState(null);
   const [alreadyEnrolled, setAlreadyEnrolled] = useState(true);
+  const [videoPlayer, setVideoPlayer] = useState(null)
 
   useEffect(() => {
     const fetchCourseDetail = () => {
@@ -122,7 +124,11 @@ function CourseDetail() {
                               </p>
                               <div className="flex items-center text-sm text-gray-600 mt-1 gap-4">
                                 {lecture.isPreviewFree && (
-                                  <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                                  <span 
+                                  onClick={() =>
+                                    setVideoPlayer({ videoId: lecture.lectURL.split("/").pop() })
+                                  }
+                                  className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
                                     Preview
                                   </span>
                                 )}
@@ -150,11 +156,15 @@ function CourseDetail() {
           {/* Right Column */}
           <div className="md:w-1/3 h-auto  p-6 bg-white shadow-lg rounded-lg backdrop-blur-md animate__animated animate__fadeInRight">
             <div className="max-w-sm   overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              {
+                videoPlayer ? <YouTube videoId={videoPlayer.videoId} opts={{playerVars:{autoplay:1}}} iframeClassName="w-full aspect-video"/>
+                :
               <img
                 src={courseDetail.thumbnail}
                 alt="Course Thumbnail"
                 className="w-full h-48 object-cover"
               />
+              }
               <p className="text-lg">
                 {currency} {courseDetail.coursePrice} <br />
               </p>
