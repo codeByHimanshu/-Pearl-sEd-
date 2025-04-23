@@ -8,7 +8,6 @@ import Home from "./pages/student/Home";
 import CourseDetail from "./pages/student/CourseDeatil";
 import CoursesList from "./pages/student/CoursesList";
 import Enrollments from "./pages/student/Enrollments";
-import Player from "./pages/student/player";
 import Navbar from "./components/student/Navbar";
 
 function App() {
@@ -19,7 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
+
           <Route path="course-detail/:id" element={<CourseDetail />} />
+          <Route path="my-enrollments" element={<Enrollments />} />
 
           <Route path="course-list" element={<CoursesList />} />
           <Route path="course-list/:search" element={<CoursesList />} />
