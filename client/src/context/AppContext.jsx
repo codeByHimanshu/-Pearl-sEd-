@@ -9,14 +9,7 @@ export const AppContextProvider = (props) => {
   const [courseData, setCourseData] = useState([]);
   const [isMentor,setIsMentor] = useState(false)
   const [dummyTestimonials ,setDummyTestimonials]=useState([])
-
-  
-
-
-  useEffect(() => {
-    setDummyTestimonials(dataTestimonial)
-    setCourseData(dummyCourses);
-  }, []);
+  const [enrolled ,setEnrolled]=useState([])
 
 
   // Function to get duration of a chapter
@@ -68,7 +61,17 @@ export const AppContextProvider = (props) => {
     return totalLectures;
   };
   
-  
+  const fetchEnrolled = async () => {
+    setEnrolled(dummyCourses
+
+    )
+  }
+
+  useEffect(() => {
+    setDummyTestimonials(dataTestimonial)
+    setCourseData(dummyCourses);
+    fetchEnrolled()
+  }, []);
 
   const value = {
     currency,
@@ -78,6 +81,7 @@ export const AppContextProvider = (props) => {
     courseDuration,
     numberOfLectures,
     chapterTime,
+    enrolled,fetchEnrolled
      
     
   };

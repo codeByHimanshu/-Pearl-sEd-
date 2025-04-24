@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+
 function Enrollments() {
+  
+  const {enrolled} = useContext(AppContext)
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-200 p-8 animate__animated animate__fadeIn">
       <h1 className="text-3xl font-bold text-blue-800 mb-6 text-center">📚 My Enrollments</h1>
@@ -15,21 +19,21 @@ function Enrollments() {
             </tr>
           </thead>
           <tbody>
-            {courseData.map((course, index) => (
+            {enrolled.map((course, index) => (
               <tr
                 key={index}
                 className="hover:bg-blue-50 transition duration-200 border-b"
               >
                 <td className="flex items-center gap-3 p-4">
                   <img
-                    src={course.image}
+                    src={course.thumbnail}
                     alt={course.title}
                     className="w-12 h-12 rounded-md shadow-md"
                   />
-                  <span className="font-medium text-gray-800">{course.title}</span>
+                  <span className="font-medium text-gray-800">{course.courseTitle}</span>
                 </td>
-                <td className="p-4 text-gray-700">{course.duration}</td>
-                <td className="p-4 text-gray-700">{course.completed}</td>
+                <td className="p-4 text-gray-700">40h</td>
+                <td className="p-4 text-gray-700">30 %</td>
                 <td className="p-4">
                   <span
                     className={`px-3 py-1 text-xs font-semibold rounded-full ${
