@@ -6,7 +6,7 @@ function Enrollments() {
   const {enrolled} = useContext(AppContext)
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-200 p-8 animate__animated animate__fadeIn">
-      <h1 className="text-3xl font-bold text-blue-800 mb-6 text-center">📚 My Enrollments</h1>
+      <h1 className="text-3xl font-bold text-blue-800 mb-6 text-center"> My Enrollments</h1>
 
       <div className="overflow-x-auto shadow-lg rounded-xl bg-white p-4">
         <table className="min-w-full text-left border-collapse">
