@@ -38,7 +38,7 @@ function Enrollments() {
                 <td className="p-4 text-gray-700">30 %</td>
                 <td className="p-4">
                   <span 
-                  onClick={()=>navigate('/media-player')}
+                  onClick={()=>navigate('/media-player/' + course.id)}
                     className={` cursor-pointer px-3 py-1 text-xs font-semibold rounded-full ${
                       course.status === 'Completed'
                         ? 'bg-green-100 text-green-700'

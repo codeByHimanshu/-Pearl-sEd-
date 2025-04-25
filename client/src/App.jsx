@@ -21,7 +21,7 @@ function App() {
 
 
           <Route path="course-detail/:id" element={<CourseDetail />} />
-          <Route path="media-player" element={<MediaPlayer />} />
+          <Route path="media-player/:id" element={<MediaPlayer />} />
           <Route path="my-enrollments" element={<Enrollments />} />
 
           <Route path="course-list" element={<CoursesList />} />
