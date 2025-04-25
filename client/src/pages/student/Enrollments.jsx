@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import {useNavigate } from 'react-router-dom'
 
 function Enrollments() {
+  const navigate = useNavigate()
   
   const {enrolled} = useContext(AppContext)
   return (
@@ -35,13 +37,15 @@ function Enrollments() {
                 <td className="p-4 text-gray-700">40h</td>
                 <td className="p-4 text-gray-700">30 %</td>
                 <td className="p-4">
-                  <span
-                    className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                  <span 
+                  onClick={()=>navigate('/media-player')}
+                    className={` cursor-pointer px-3 py-1 text-xs font-semibold rounded-full ${
                       course.status === 'Completed'
                         ? 'bg-green-100 text-green-700'
                         : 'bg-yellow-100 text-yellow-700'
                     }`}
                   >
+                    continue
                     {course.status}
                   </span>
                 </td>

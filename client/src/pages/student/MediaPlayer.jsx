@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Player() {
+function MediaPlayer() {
   return (
     <div>
       <h1>medial player page</h1>
@@ -8,4 +8,4 @@ function Player() {
   )
 }
 
-export default Player
+export default MediaPlayer

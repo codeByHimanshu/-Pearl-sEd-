@@ -9,6 +9,7 @@ import CourseDetail from "./pages/student/CourseDeatil";
 import CoursesList from "./pages/student/CoursesList";
 import Enrollments from "./pages/student/Enrollments";
 import Navbar from "./components/student/Navbar";
+import MediaPlayer from "./pages/student/MediaPlayer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
 
           <Route path="course-detail/:id" element={<CourseDetail />} />
+          <Route path="media-player" element={<MediaPlayer />} />
           <Route path="my-enrollments" element={<Enrollments />} />
 
           <Route path="course-list" element={<CoursesList />} />
