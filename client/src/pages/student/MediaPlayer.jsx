@@ -13,7 +13,7 @@ function MediaPlayer() {
   const { courseData, chapterTime } = useContext(AppContext);
   const [courseDetail, setCourseDetail] = useState(null);
   const [openChapter, setOpenChapter] = useState(null);
-  const [videoPlayer, setVideoPlayer] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
   useEffect(() => {
     const foundCourse = courseData.find((course) => course.id === id);
@@ -24,12 +24,17 @@ function MediaPlayer() {
     setOpenChapter(openChapter === index ? null : index);
   };
 
+  const handleLectureClick = (lecture) => {
+    const videoId = lecture.lectURL.split("/").pop();
+    setCurrentVideo(videoId);
+  };
+
   return courseDetail ? (
     <>
       <div className="bg-gradient-to-br from-blue-100 via-blue-200 to-white min-h-screen p-8 text-gray-800 animate__animated animate__fadeIn">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
-          
-          {/* Left Side - Course Details */}
+
+          {/* Left Side - Course Content */}
           <div className="md:w-2/3 bg-white p-6 rounded-2xl shadow-md animate__animated animate__fadeInLeft">
             <h2 className="text-2xl font-bold text-blue-700 mb-6">Course Content</h2>
 
@@ -56,24 +61,23 @@ function MediaPlayer() {
                   {openChapter === index && (
                     <ul className="p-4 space-y-4 bg-gray-50 rounded-b-lg">
                       {chapter.chContent.map((lecture, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
+                        <li
+                          key={idx}
+                          onClick={() => handleLectureClick(lecture)}
+                          className="flex items-start gap-4 p-2 rounded-lg hover:bg-blue-100 transition cursor-pointer"
+                        >
                           <div className="text-blue-600 mt-1">
                             <BsFillPlayFill className="text-2xl" />
                           </div>
                           <div className="flex flex-col">
                             <p className="font-semibold text-gray-800">{lecture.lTitle}</p>
                             <div className="flex items-center text-xs text-gray-500 gap-3 mt-1">
-                              {lecture.isPreviewFree && (
-                                <button
-                                  onClick={() =>
-                                    setVideoPlayer({ videoId: lecture.lectURL.split("/").pop() })
-                                  }
-                                  className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium hover:bg-green-200 transition"
-                                >
-                                  Preview
-                                </button>
-                              )}
-                              <span>{humanizeDuration(lecture.duration * 60 * 1000, { units: ["h", "m"], round: true })}</span>
+                              <span>
+                                {humanizeDuration(lecture.duration * 60 * 1000, {
+                                  units: ["h", "m"],
+                                  round: true,
+                                })}
+                              </span>
                             </div>
                           </div>
                         </li>
@@ -87,16 +91,24 @@ function MediaPlayer() {
 
           {/* Right Side - Video Player */}
           <div className="md:w-1/3 bg-white p-6 rounded-2xl shadow-md animate__animated animate__fadeInRight flex flex-col items-center">
-            <h2 className="text-xl font-bold text-blue-700 mb-4">Preview Video</h2>
-            {videoPlayer ? (
+            <h2 className="text-xl font-bold text-blue-700 mb-4">Lecture Player</h2>
+            {currentVideo ? (
               <YouTube
-                videoId={videoPlayer.videoId}
-                opts={{ playerVars: { autoplay: 1 } }}
+                videoId={currentVideo}
+                opts={{
+                  width: "100%",
+                  playerVars: {
+                    autoplay: 1,
+                    controls: 1,
+                    modestbranding: 1,
+                    rel: 0,
+                  },
+                }}
                 iframeClassName="w-full rounded-lg aspect-video"
               />
             ) : (
               <div className="w-full h-60 bg-blue-100 flex items-center justify-center text-blue-500 rounded-lg">
-                Select a lecture preview
+                Select a lecture to start
               </div>
             )}
           </div>
