@@ -15,8 +15,8 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar />
         <Routes>
+        <Navbar />
           <Route path="/" element={<Home />} />
 
 
@@ -26,8 +26,13 @@ function App() {
 
           <Route path="course-list" element={<CoursesList />} />
           <Route path="course-list/:search" element={<CoursesList />} />
+        </Routes>
 
-          <Route path="/mentor" element={<Mentor />}>
+          
+      </div>
+      <div>
+        <Routes>
+      <Route path="/mentor" element={<Mentor />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="add-course" element={<AddCourse />} />
             <Route path="my-course" element={<MyCourses />} />
