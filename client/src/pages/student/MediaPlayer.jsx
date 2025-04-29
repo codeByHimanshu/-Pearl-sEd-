@@ -34,7 +34,7 @@ function MediaPlayer() {
       <div className="bg-gradient-to-br from-blue-100 via-blue-200 to-white min-h-screen p-8 text-gray-800 animate__animated animate__fadeIn">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
 
-          {/* Left Side - Course Content */}
+         
           <div className="md:w-2/3 bg-white p-6 rounded-2xl shadow-md animate__animated animate__fadeInLeft">
             <h2 className="text-2xl font-bold text-blue-700 mb-6">Course Content</h2>
 
@@ -91,7 +91,6 @@ function MediaPlayer() {
 
           {/* Right Side - Video Player */}
           <div className="md:w-1/3 bg-white p-6 rounded-2xl shadow-md animate__animated animate__fadeInRight flex flex-col items-center">
-            <h2 className="text-xl font-bold text-blue-700 mb-4">Lecture Player</h2>
             {currentVideo ? (
               <YouTube
                 videoId={currentVideo}

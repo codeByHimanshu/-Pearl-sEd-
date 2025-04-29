@@ -299,7 +299,7 @@ export const dummyCourses = [
           "lid": "517",
           "lTitle": "Arrays & Linked Lists",
           "duration": "19 mins",
-          "lectURL": "https://www.youtube.com/watch?v=W8xlhZlR4n4",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -307,7 +307,7 @@ export const dummyCourses = [
           "lid": "518",
           "lTitle": "Stacks & Queues",
           "duration": "21 mins",
-          "lectURL": "https://www.youtube.com/watch?v=wnYIHZ_5d8w",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -322,7 +322,7 @@ export const dummyCourses = [
           "lid": "519",
           "lTitle": "Binary Trees",
           "duration": "25 mins",
-          "lectURL": "https://www.youtube.com/watch?v=LR0vMb7-pxI",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -330,7 +330,7 @@ export const dummyCourses = [
           "lid": "520",
           "lTitle": "Graph Traversal",
           "duration": "30 mins",
-          "lectURL": "https://www.youtube.com/watch?v=6JxzvHMYiXM",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -345,7 +345,7 @@ export const dummyCourses = [
           "lid": "521",
           "lTitle": "Quick Sort & Merge Sort",
           "duration": "35 mins",
-          "lectURL": "https://www.youtube.com/watch?v=CO8Jx3_UQjo",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -353,7 +353,7 @@ export const dummyCourses = [
           "lid": "522",
           "lTitle": "Binary Search Algorithm",
           "duration": "28 mins",
-          "lectURL": "https://www.youtube.com/watch?v=gg9J6KSOyXk",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -368,7 +368,7 @@ export const dummyCourses = [
           "lid": "523",
           "lTitle": "Intro to Dynamic Programming",
           "duration": "40 mins",
-          "lectURL": "https://www.youtube.com/watch?v=oBt53YbR9Kk",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -376,7 +376,7 @@ export const dummyCourses = [
           "lid": "524",
           "lTitle": "Knapsack Problem",
           "duration": "38 mins",
-          "lectURL": "https://www.youtube.com/watch?v=YlTxdOej8DQ",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -417,7 +417,7 @@ export const dummyCourses = [
           "lid": "201",
           "lTitle": "Java Basics",
           "duration": "15 mins",
-          "lectURL": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y291cnNlfGVufDB8fDB8fHww",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -425,7 +425,7 @@ export const dummyCourses = [
           "lid": "202",
           "lTitle": "Setting up Java Environment",
           "duration": "20 mins",
-          "lectURL": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y291cnNlfGVufDB8fDB8fHww",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -440,7 +440,7 @@ export const dummyCourses = [
           "lid": "203",
           "lTitle": "Data Types and Variables",
           "duration": "18 mins",
-          "lectURL": "https://www.youtube.com/watch?v=2KJX3zZVXYw",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -448,7 +448,7 @@ export const dummyCourses = [
           "lid": "204",
           "lTitle": "Control Structures",
           "duration": "22 mins",
-          "lectURL": "https://www.youtube.com/watch?v=UKBYHV6jB1s",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -463,7 +463,7 @@ export const dummyCourses = [
           "lid": "205",
           "lTitle": "Classes and Objects",
           "duration": "25 mins",
-          "lectURL": "https://www.youtube.com/watch?v=Qz0efX8S2dw",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -471,7 +471,7 @@ export const dummyCourses = [
           "lid": "206",
           "lTitle": "Inheritance and Polymorphism",
           "duration": "30 mins",
-          "lectURL": "https://www.youtube.com/watch?v=aZ3FYR8TXu0",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -486,7 +486,7 @@ export const dummyCourses = [
           "lid": "207",
           "lTitle": "Lists and Sets",
           "duration": "32 mins",
-          "lectURL": "https://www.youtube.com/watch?v=ztO6Olbfpd8",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -494,7 +494,7 @@ export const dummyCourses = [
           "lid": "208",
           "lTitle": "Maps and Queues",
           "duration": "28 mins",
-          "lectURL": "https://www.youtube.com/watch?v=F8rRglfa7uw",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -529,7 +529,7 @@ export const dummyCourses = [
           "lid": "301",
           "lTitle": "JavaScript Basics",
           "duration": "18 mins",
-          "lectURL": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -537,7 +537,7 @@ export const dummyCourses = [
           "lid": "302",
           "lTitle": "Data Types & Operators",
           "duration": "22 mins",
-          "lectURL": "https://www.youtube.com/watch?v=upDLs1sn7g4",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": false,
           "lectOrder": 2
         }
@@ -552,7 +552,7 @@ export const dummyCourses = [
           "lid": "303",
           "lTitle": "Conditional Statements (if, else, switch)",
           "duration": "20 mins",
-          "lectURL": "https://www.youtube.com/watch?v=R9dZ7Hc7z3o",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",
           "isPreviewFree": true,
           "lectOrder": 1
         },
@@ -560,7 +560,7 @@ export const dummyCourses = [
           "lid": "304",
           "lTitle": "Loops (for, while, do-while)",
           "duration": "25 mins",
-          "lectURL": "https://www.youtube.com/watch?v=Rye_vJ5HEek",
+          "lectURL": "https://youtu.be/NBnuqq10zoo?si=sJjGGbkRI6UjOERR",   
           "isPreviewFree": false,
           "lectOrder": 2
         }

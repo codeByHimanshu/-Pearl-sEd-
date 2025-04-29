@@ -1,12 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Navbar from '../../components/mentor/Navbar'
 
 function Mentor() {
   return (
     <div>
-      <h1>
-        mentor page
-      </h1>
+      <Navbar />
+   
       
     <div>
         < Outlet />
