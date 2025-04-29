@@ -7,7 +7,7 @@ export const AppContext = createContext();
 export const AppContextProvider = (props) => {
   const currency = "INR";
   const [courseData, setCourseData] = useState([]);
-  const [isMentor,setIsMentor] = useState(false)
+  const [isMentor,setIsMentor] = useState(true)
   const [dummyTestimonials ,setDummyTestimonials]=useState([])
   const [enrolled ,setEnrolled]=useState([])
 
