@@ -1,3 +1,67 @@
+
+ export const mentorDashboardData = {
+  summary: {
+    totalEnrollments: 14,
+    totalCourses: 8,
+    totalEarnings: "$245"
+  },
+  latestEnrollments: [
+    {
+      id: 1,
+      studentName: "Richard Sanford",
+      courseTitle: "Build Text to Image SaaS App in React JS",
+      date: "22 Aug, 2024",
+      profileImage: "https://images.unsplash.com/photo-1607746882042-944635dfe10e"
+    },
+    {
+      id: 2,
+      studentName: "Enrique Murphy",
+      courseTitle: "Build AI BG Removal SaaS App in React JS",
+      date: "22 Aug, 2024",
+      profileImage: "https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+    },
+    {
+      id: 3,
+      studentName: "Alison Powell",
+      courseTitle: "React Router Complete Course in One Video",
+      date: "25 Sep, 2024",
+      profileImage: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce"
+    },
+    {
+      id: 4,
+      studentName: "Richard Sanford",
+      courseTitle: "Build Full Stack E-Commerce App in React JS",
+      date: "15 Oct, 2024",
+      profileImage: "https://images.unsplash.com/photo-1552058544-f2b08422138a"
+    },
+    {
+      id: 5,
+      studentName: "Enrique Murphy",
+      courseTitle: "Build AI BG Removal SaaS App in React JS",
+      date: "22 Aug, 2024",
+      profileImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2"
+    },
+    {
+      id: 6,
+      studentName: "Alison Powell",
+      courseTitle: "React Router Complete Course in One Video",
+      date: "25 Sep, 2024",
+      profileImage: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1"
+    },
+    {
+      id: 7,
+      studentName: "Richard Sanford",
+      courseTitle: "Build Full Stack E-Commerce App in React JS",
+      date: "15 Oct, 2024",
+      profileImage: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c"
+    }
+  ]
+};
+
+
+
+
+
 export const dataTestimonial = [
   {
     name: "Donald Jackman",
