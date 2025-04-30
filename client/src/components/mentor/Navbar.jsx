@@ -7,7 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between px-6 py-3 shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white rounded-b-xl">
+    <div className="flex items-center justify-between px-6 py-3 shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white ">
       
       <div className="flex items-center gap-3">
         <img

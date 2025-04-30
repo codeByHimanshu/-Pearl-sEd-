@@ -5,16 +5,21 @@ import SideBar from '../../components/mentor/SideBar'
 
 function Mentor() {
   return (
-    <div>
-      <Navbar />
-   
+    <div className="flex flex-col h-screen">
       
-    <div className='flex-1'>
-<SideBar />
-    </div>
-      <div>
+      <Navbar />
 
-        < Outlet />
+    
+      <div className="flex flex-1 overflow-hidden">
+      
+        <div className="w-64 bg-gray-100 border-r">
+          <SideBar />
+        </div>
+
+      
+        <div className="flex-1 p-4">
+          <Outlet />
+        </div>
       </div>
     </div>
   )
