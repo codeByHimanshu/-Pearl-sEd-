@@ -1,3 +1,47 @@
+export const enrolledStudents = [
+  {
+    id: 1,
+    studentName: "Richard Sanford",
+    courseTitle: "Build Text to Image SaaS App in React JS",
+    date: "22 Aug, 2024",
+  },
+  {
+    id: 2,
+    studentName: "Enrique Murphy",
+    courseTitle: "Build AI BG Removal SaaS App in React JS",
+    date: "22 Aug, 2024",
+  },
+  {
+    id: 3,
+    studentName: "Alison Powell",
+    courseTitle: "React Router Complete Course in One Video",
+    date: "25 Sep, 2024",
+  },
+  {
+    id: 4,
+    studentName: "Richard Sanford",
+    courseTitle: "Build Full Stack E-Commerce App in React JS",
+    date: "15 Oct, 2024",
+  },
+  {
+    id: 5,
+    studentName: "Enrique Murphy",
+    courseTitle: "Build AI BG Removal SaaS App in React JS",
+    date: "22 Aug, 2024",
+  },
+  {
+    id: 6,
+    studentName: "Alison Powell",
+    courseTitle: "React Router Complete Course in One Video",
+    date: "25 Sep, 2024",
+  },
+  {
+    id: 7,
+    studentName: "Richard Sanford",
+    courseTitle: "Build Full Stack E-Commerce App in React JS",
+    date: "15 Oct, 2024",
+  },
+];
 
  export const mentorDashboardData = {
   summary: {
