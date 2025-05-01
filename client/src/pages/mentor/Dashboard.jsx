@@ -7,7 +7,7 @@ function Dashboard() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* Summary Cards */}
+  
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="bg-white shadow-md rounded-lg p-5 text-center">
           <p className="text-2xl font-bold">{summary.totalEnrollments}</p>
