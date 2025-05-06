@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
-import "animate.css";
 import { AppContext } from "../../context/AppContext";
+import "animate.css";
 
 function Navbar() {
+  const location = useLocation();
   const isCourseList = location.pathname.includes("/course-list");
   const { openSignIn } = useClerk();
   const { user } = useUser();
@@ -13,81 +14,79 @@ function Navbar() {
 
   return (
     <div
-      className={`flex items-center justify-between p-4 shadow-md animate__animated animate__fadeInDown ${
+      className={`flex justify-between items-center px-6 py-4 shadow-md animate__animated animate__fadeInDown ${
         isCourseList
           ? "bg-gradient-to-r from-gray-200 to-gray-500 text-black"
-          : "bg-gradient-to-r from-cyan-500 to-blue-500"
+          : "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
       }`}
     >
+      {/* Logo */}
       <img
         src="/src/assets/loggo.svg"
-        alt="logo"
-        onClick={() => {
-          navigate("/");
-        }}
-        className="h-20 w-64 animate__animated animate__zoomIn  rounded-xl mix-blend-color-burn object-fit"
+        alt="Logo"
+        onClick={() => navigate("/")}
+        className="h-16 w-52 cursor-pointer rounded-xl object-contain animate__animated animate__zoomIn"
       />
-      <div className="flex items-center space-x-4">
-        <div className="hidden md:flex items-center px-4 py-2 rounded-md gap-4">
-          {user && (
-            <>
-              <button
-                className="mr-4 font-bold text-gray-300 hover:text-white transition duration-300 animate__animated animate__fadeIn"
-                onClick={() => navigate("/mentor")}
-              >
-                {isMentor ? "Mentor Dashboard" : "Become Mentor"}
-              </button>
 
-              <Link
-                to="/my-enrollments"
-                className="text-gray-300 hover:text-white transition duration-300 animate__animated animate__fadeIn"
-              >
-                My Enrollments
-              </Link>
-            </>
-          )}
-          {user ? (
-            <UserButton />
-          ) : (
+      {/* Desktop Menu */}
+      <div className="hidden md:flex items-center space-x-6">
+        {user && (
+          <>
             <button
-              onClick={() => openSignIn()}
-              className="px-4 py-2 bg-gray-700 text-white text-lg rounded-md hover:bg-gray-600 transition duration-300 animate__animated animate__bounceIn"
+              className="font-medium hover:text-gray-100 transition duration-300 animate__animated animate__fadeIn"
+              onClick={() => navigate("/mentor")}
             >
-              Create Account
+              {isMentor ? "Mentor Dashboard" : "Become Mentor"}
             </button>
-          )}
-        </div>
-      </div>
-      <div className="md:hidden flex items-center">
-        <div>
-          {user && (
-            <>
-              <button
-                className="mr-4 font-bold text-gray-300 hover:text-white transition duration-300 animate__animated animate__fadeIn"
-                onClick={() => navigate("/mentor")}
-              >
-                {isMentor ? "Mentor Dashboard" : "Become Mentor"}
-              </button>
-              <Link
-                to="/my-enrollments"
-                className="text-gray-300 hover:text-white transition duration-300 animate__animated animate__fadeIn"
-              >
-                My Enrollments
-              </Link>
-            </>
-          )}
-        </div>
+
+            <Link
+              to="/my-enrollments"
+              className="font-medium hover:text-gray-100 transition duration-300 animate__animated animate__fadeIn"
+            >
+              My Enrollments
+            </Link>
+          </>
+        )}
+
         {user ? (
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         ) : (
           <button
             onClick={() => openSignIn()}
-            className="px-2 py-2 animate__animated animate__fadeIn"
+            className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 animate__animated animate__bounceIn"
           >
+            Create Account
+          </button>
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div className="md:hidden flex items-center space-x-4">
+        {user && (
+          <>
+            <button
+              className="font-medium text-sm hover:text-gray-100 transition duration-300"
+              onClick={() => navigate("/mentor")}
+            >
+              {isMentor ? "Dashboard" : "Mentor"}
+            </button>
+
+            <Link
+              to="/my-enrollments"
+              className="text-sm font-medium hover:text-gray-100"
+            >
+              Enrollments
+            </Link>
+          </>
+        )}
+        {user ? (
+          <UserButton />
+        ) : (
+          <button onClick={() => openSignIn()} className="p-1">
             <img
-              className="rounded-2xl w-10 h-10 hover:opacity-80 transition duration-300"
-              src="https://images.unsplash.com/photo-1586374579358-9d19d632b6df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGljb258ZW58MHx8MHx8fDA%3D"
-              alt=""
+              className="w-10 h-10 rounded-full hover:opacity-90 transition"
+              src="https://images.unsplash.com/photo-1586374579358-9d19d632b6df?w=500&auto=format&fit=crop&q=60"
+              alt="Sign In Icon"
             />
           </button>
         )}

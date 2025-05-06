@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
-
-
-
-
 function Testimonials() {
-    const {dummyTestimonials} = useContext(AppContext)
-    console.log(typeof(dummyTestimonials) + " hahahagafgffyfuy");
-    
+  const { dummyTestimonials } = useContext(AppContext);
+
+  if (!Array.isArray(dummyTestimonials) || dummyTestimonials.length === 0) {
+    return (
+      <div className="bg-gray-100 py-12 px-4 md:px-16 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">What Our Users Say</h2>
+        <p className="text-gray-500">No testimonials available at the moment.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-100 py-12 px-4 md:px-16">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-10 animate__animated animate__fadeInDown">
@@ -19,12 +23,13 @@ function Testimonials() {
         {dummyTestimonials.map((testimonial, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start space-y-4 animate__animated animate__fadeInUp animate__delay-1s"
+            className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start space-y-4 animate__animated animate__fadeInUp"
+            style={{ animationDelay: `${index * 0.2}s`, animationFillMode: 'both' }}
           >
             <div className="flex items-center space-x-4">
               <img
                 src={testimonial.image}
-                alt={testimonial.name}
+                alt={testimonial.name || 'User'}
                 className="w-14 h-14 rounded-full object-cover"
               />
               <div>
@@ -34,11 +39,8 @@ function Testimonials() {
             </div>
 
             <div className="flex text-yellow-400">
-              {Array.from({ length: testimonial.rating }, (_, i) => (
-                <span key={i}>★</span>
-              ))}
-              {Array.from({ length: 5 - testimonial.rating }, (_, i) => (
-                <span key={i}>☆</span>
+              {Array.from({ length: 5 }, (_, i) => (
+                <span key={i}>{i < testimonial.rating ? '★' : '☆'}</span>
               ))}
             </div>
 

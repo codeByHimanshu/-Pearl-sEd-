@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-
-function SearchBar({ data }) {
-  const [searchValue, setSearchValue] = useState(data);
+function SearchBar() {
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchValue.trim() !== "") {
-      navigate("/course-list/" + searchValue.trim());
+    const query = searchValue.trim();
+
+    if (query) {
+      navigate(`/course-list/${encodeURIComponent(query)}`);
     } else {
-      navigate("/course-list"); 
+      navigate("/course-list");
     }
   };
 
@@ -24,9 +25,9 @@ function SearchBar({ data }) {
       <FiSearch className="text-gray-700 text-2xl mx-3 animate__animated animate__pulse animate__infinite" />
 
       <input
-        onChange={(e) => setSearchValue(e.target.value)}
         type="text"
         value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Search courses..."
         className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-600"
       />
