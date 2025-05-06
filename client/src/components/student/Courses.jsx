@@ -7,7 +7,7 @@ function Courses() {
   const { courseData } = useContext(AppContext);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-14 bg-gradient-to-br from-indigo-50 via-green-50 to-white shadow-xl rounded-3xl">
+    <div className="max-w-7xl mx-auto px-6 py-14">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-extrabold text-indigo-800 mb-4 animate__animated animate__fadeInDown">
           Learn from Skilled Mentors

@@ -11,7 +11,7 @@ const companies = [
 
 function Companies() {
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-green-50 to-white px-4 md:px-20 text-center">
+    <div className=" px-4 md:px-20 text-center">
       <h1 className="text-4xl font-extrabold text-indigo-700 mb-10 animate__animated animate__fadeInDown tracking-tight">
         Trusted by Leading Tech Giants
       </h1>
