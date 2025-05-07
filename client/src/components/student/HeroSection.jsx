@@ -16,14 +16,12 @@ function HeroSection() {
           <circle cx="300" cy="300" r="300" fill="#4ADE80" />
         </svg>
       </div>
-
-      {/* Heading */}
       <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight relative z-10 animate__animated animate__fadeInDown">
         Ready to boost your skills? <br />
         <span className="text-green-600">Join trending courses today!</span>
       </h1>
 
-      {/* Optional underline illustration */}
+
       <div className="relative w-full max-w-[420px] mt-2 hidden md:block">
         <img
           src="/path-to-image.png"
@@ -31,14 +29,7 @@ function HeroSection() {
           className="absolute left-1/2 transform -translate-x-1/2 w-40"
         />
       </div>
-{/* 
-      <p className="mt-8 text-lg md:text-xl text-gray-700 max-w-2xl z-10 animate__animated animate__fadeInUp">
-        Learn <span className="font-semibold text-gray-900">programming</span>, <span className="font-semibold text-gray-900">design</span>, <span className="font-semibold text-gray-900">marketing</span>, and more — all from top mentors. Real skills, real progress.
-      </p>
 
-      <p className="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl z-10 animate__animated animate__fadeInUp animate__delay-1s">
-        Study at your own pace with <span className="text-green-700 font-semibold">flexible schedules</span> and a supportive community of learners.
-      </p> */}
 
    
       <div className="mt-10 w-full max-w-2xl z-10 animate__animated animate__fadeInUp ">
