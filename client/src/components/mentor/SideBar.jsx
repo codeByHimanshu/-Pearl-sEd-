@@ -32,9 +32,9 @@ function SideBar() {
   return (
     isMentor && (
       <div
-        className="w-64 min-h-screen bg-gradient-to-b from-gray-800 via-blue-900 to-black
+        className="w-64 relative min-h-screen bg-gradient-to-b from-gray-800 via-blue-900 to-black
 
- text-white p-4 shadow-lg"
+ text-white p-4 shadow-lg"  
       >
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Mentor Panel
