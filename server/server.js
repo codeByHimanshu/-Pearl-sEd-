@@ -1,10 +1,13 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import Dbcon from './config/docon.js'
 
 const app = express();
 
 app.use(cors());
+
+await Dbcon()
 
 app.get("/", (req, res) => res.send("server is ruunig"));
 
