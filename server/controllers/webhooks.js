@@ -1,6 +1,8 @@
-import { Svix, webhook } from "svix";
-import User from "./models/UserSchema.js";
+import pkg from "svix";
+const { Svix, Webhook } = pkg
+
 import dotenv from "dotenv";
+import User from "../models/UserSchema.js";
 dotenv.config();
 
 export const clerkhook = async (req, res) => {
