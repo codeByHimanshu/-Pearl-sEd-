@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import Dbcon from './config/docon.js'
 import { clerkhook } from "./controllers/webhooks.js";
 
@@ -12,7 +13,11 @@ await Dbcon()
 
 app.get("/", (req, res) => res.send("server is ruunig"));
 
-app.post('/clerk',express.json(),clerkhook)
+app.post(
+  "/clerk",
+  bodyParser.raw({ type: "application/json" }),
+  clerkhook
+)
 
 
 const port =  process.env.port || 3000
