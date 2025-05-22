@@ -17,6 +17,7 @@ export const clerkhook = async (req, res) => {
 
     const { data, type } = req.body;
 
+
     switch (type) {
       case "user.created": {
         const userInfo = {
@@ -27,6 +28,7 @@ export const clerkhook = async (req, res) => {
         };
         await User.create(userInfo);
         return res.json({});
+        console.log(userInfo);
       }
 
       case "user.updated": {
@@ -52,3 +54,4 @@ export const clerkhook = async (req, res) => {
     res.status(400).json({ error: "Webhook verification failed" });
   }
 };
+ 
