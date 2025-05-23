@@ -2,27 +2,26 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import Dbcon from './config/docon.js'
+import Dbcon from "./config/docon.js";
 import { clerkhook } from "./controllers/webhooks.js";
 
-const app = express();
+dotenv.config();
 
+const app = express();
 app.use(cors());
 
-await Dbcon()
 
-app.get("/", (req, res) => res.send("server is ruunig"));
+app.use("/clerk", bodyParser.raw({ type: "application/json" }));
+app.post("/clerk", clerkhook);
 
-app.post(
-  "/clerk",
-  bodyParser.raw({ type: "application/json" }),
-  clerkhook
-)
+app.use(express.json());
 
 
-const port =  process.env.port || 3000
+app.get("/", (req, res) => res.send("Server is running"));
 
-app.listen(port,()=>{
-    console.log(`server is ruunig on port ${port}`);
-    
-})
+await Dbcon();
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`✅ Server running on port ${port}`);
+});

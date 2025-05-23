@@ -20,7 +20,7 @@ function Navbar() {
           : "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
       }`}
     >
-      {/* Logo */}
+     
       <img
         src="/src/assets/loggo.svg"
         alt="Logo"
@@ -28,7 +28,7 @@ function Navbar() {
         className="h-16 w-52 cursor-pointer rounded-xl object-contain animate__animated animate__zoomIn"
       />
 
-      {/* Desktop Menu */}
+   
       <div className="hidden md:flex items-center space-x-6">
         {user && (
           <>
@@ -60,7 +60,6 @@ function Navbar() {
         )}
       </div>
 
-      {/* Mobile Menu */}
       <div className="md:hidden flex items-center space-x-4">
         {user && (
           <>
