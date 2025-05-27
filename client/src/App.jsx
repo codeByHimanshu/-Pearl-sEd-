@@ -27,7 +27,8 @@ const AppRoutes = () => {
       {!isMentorRoute && <Navbar />}
 
       <Routes>
-        {/* Student routes */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path="course-detail/:id" element={<CourseDetail />} />
         <Route path="media-player/:id" element={<MediaPlayer />} />
@@ -35,7 +36,7 @@ const AppRoutes = () => {
         <Route path="course-list" element={<CoursesList />} />
         <Route path="course-list/:search" element={<CoursesList />} />
 
-        {/* Mentor routes */}
+       
         <Route path="/mentor" element={<Mentor />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="add-course" element={<AddCourse />} />

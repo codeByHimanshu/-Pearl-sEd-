@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { AppContext } from "../../context/AppContext";
 import "animate.css";
 
 function Navbar() {
-  const location = useLocation();
+  const location = useLocation();       
   const isCourseList = location.pathname.includes("/course-list");
-  const { openSignIn } = useClerk();
-  const { user } = useUser();
   const navigate = useNavigate();
-  const { isMentor } = useContext(AppContext);
+  const { isMentor, user, logout } = useContext(AppContext);
 
   return (
     <div
@@ -20,7 +17,6 @@ function Navbar() {
           : "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
       }`}
     >
-     
       <img
         src="/src/assets/loggo.svg"
         alt="Logo"
@@ -28,7 +24,6 @@ function Navbar() {
         className="h-16 w-52 cursor-pointer rounded-xl object-contain animate__animated animate__zoomIn"
       />
 
-   
       <div className="hidden md:flex items-center space-x-6">
         {user && (
           <>
@@ -49,14 +44,27 @@ function Navbar() {
         )}
 
         {user ? (
-          <UserButton afterSignOutUrl="/" />
-        ) : (
           <button
-            onClick={() => openSignIn()}
-            className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 animate__animated animate__bounceIn"
+            onClick={logout}
+            className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
           >
-            Create Account
+            Logout
           </button>
+        ) : (
+          <div className="space-x-4">
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => navigate("/signup")}
+              className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
+            >
+              Sign Up
+            </button>
+          </div>
         )}
       </div>
 
@@ -79,15 +87,14 @@ function Navbar() {
           </>
         )}
         {user ? (
-          <UserButton />
-        ) : (
-          <button onClick={() => openSignIn()} className="p-1">
-            <img
-              className="w-10 h-10 rounded-full hover:opacity-90 transition"
-              src="https://images.unsplash.com/photo-1586374579358-9d19d632b6df?w=500&auto=format&fit=crop&q=60"
-              alt="Sign In Icon"
-            />
+          <button onClick={logout} className="text-sm font-medium hover:text-gray-100">
+            Logout
           </button>
+        ) : (
+          <div className="space-x-2">
+            <button onClick={() => navigate("/login")} className="text-sm">Login</button>
+            <button onClick={() => navigate("/signup")} className="text-sm">Sign Up</button>
+          </div>
         )}
       </div>
     </div>
