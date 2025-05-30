@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 
 import Dbcon from "./config/docon.js";
 
-import router from "./routes/user.route.js";
+
+import userRouter from "./routes/user.route.js";
 
 
 dotenv.config();
@@ -15,7 +16,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.post("/auth", router);
+app.post("/api/auth", userRouter);
 
 
 app.get("/", (req, res) => res.send("Server is running"));

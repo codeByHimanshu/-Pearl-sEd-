@@ -5,14 +5,14 @@ import { signup, signin } from '../controllers/user.controller.js';
 import userMiddleware from '../middleware/usermiddleware.js';
 
 
-const router = express.Router();
+const userRouter = express.Router();
 
 
 
-router.post('/signup', signup);
+userRouter.post('/signup', signup);
 
 
-router.post('/signin', userMiddleware, signin);
+userRouter.post('/signin', userMiddleware, signin);
 
 
- export default router;
+ export default userRouter;
