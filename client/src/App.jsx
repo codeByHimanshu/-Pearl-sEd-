@@ -2,7 +2,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  useMatch,
   useLocation
 } from "react-router-dom";
 import Mentor from "./pages/mentor/Mentor";

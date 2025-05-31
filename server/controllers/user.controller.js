@@ -12,7 +12,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: "Email already registered" });
     }
 
-    const newUser = new SignUp({ name, email, password, role });
+    const newUser = new Signup({ name, email, password, role });
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
@@ -23,10 +23,11 @@ export const signup = async (req, res) => {
 };
 
 export const signin = async (req, res) => {
+  console.log("Signin request received:", req.body);
   try {
     const { email, password } = req.body;
 
-    const user = await SignUp.findOne({ email });
+    const user = await Signup.findOne({ email });
     if (!user || user.password !== password) {
       return res.status(400).json({ message: "Invalid email or password" });
     }

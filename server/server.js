@@ -3,25 +3,24 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import Dbcon from "./config/docon.js";
+import router from "./routes/user.route.js";
 
-
-import userRouter from "./routes/user.route.js";
 
 
 dotenv.config();
-
+await Dbcon();
 const app = express();
 app.use(cors());
 
 
 app.use(express.json());
 
-app.post("/api/auth", userRouter);
+app.use("/api/auth", router);
 
 
-app.get("/", (req, res) => res.send("Server is running"));
+app.get("/", (_req, res) => res.send("Server is running"));
 
-await Dbcon();
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
