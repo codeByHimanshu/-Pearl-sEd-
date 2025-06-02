@@ -16,6 +16,8 @@ import Enrollments from "./pages/student/Enrollments";
 import Navbar from "./components/student/Navbar";
 import MediaPlayer from "./pages/student/MediaPlayer";
 import 'quill/dist/quill.snow.css'
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 const AppRoutes = () => {
   const location = useLocation();

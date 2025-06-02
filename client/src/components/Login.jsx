@@ -6,7 +6,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,26 +19,31 @@ const Login = () => {
     setMessage({});
 
     try {
-    const token = localStorage.getItem('access_token');
-    const response = await fetch("http://localhost:3000/api/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify(formData),
-    });
+      const response = await fetch("http://localhost:3000/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       const data = await response.json();
+      console.log("Login response:", data); // Debug log
 
-      if (response.ok && data.token) {
-        localStorage.setItem("token", data.token); 
+      if (response.ok && data.token && data.user) {
+        localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("role", data.user.role); // ✅ Save role separately
 
         setMessage({ type: "success", text: "Login successful!" });
 
         setTimeout(() => {
-          navigate("/dashboard");
+          // Optional: redirect based on role
+          if (data.user.role === "mentor") {
+            navigate("/mentor/dashboard");
+          } else {
+            navigate("/student/dashboard");
+          }
         }, 1000);
       } else {
         setMessage({
@@ -47,6 +52,7 @@ const Login = () => {
         });
       }
     } catch (error) {
+      console.error("Login error:", error);
       setMessage({ type: "error", text: "Network error. Please try again." });
     } finally {
       setLoading(false);
@@ -80,7 +86,7 @@ const Login = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="you@example.com"
+              placeholder="enter email id"
             />
           </div>
           <div>
@@ -92,7 +98,7 @@ const Login = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="••••••••"
+              placeholder="enter your password"
             />
           </div>
 

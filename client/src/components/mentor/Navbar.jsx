@@ -1,10 +1,15 @@
 import React from "react";
-import { useUser, UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { user } = useUser();
   const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem('user')); 
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <div
@@ -25,9 +30,19 @@ function Navbar() {
           {user ? user.firstName : "Guest"}
         </p>
         {user ? (
-          <UserButton afterSignOutUrl="/" />
+          <button
+            onClick={handleLogout}
+            className="text-sm text-white hover:text-gray-300"
+          >
+            Logout
+          </button>
         ) : (
-          <span className="text-sm text-red-100 italic">Not Signed In</span>
+          <button
+            onClick={() => navigate('/login')}
+            className="text-sm text-red-100 italic hover:text-red-200"
+          >
+            Login
+          </button>
         )}
       </div>
     </div>

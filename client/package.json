@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.25.5",
     "@tailwindcss/vite": "^4.0.17",
     "animate.css": "^4.1.1",
     "humanize-duration": "^3.32.1",
