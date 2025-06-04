@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    role: "student", // default role
+  });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
 
@@ -33,16 +37,15 @@ const Login = () => {
       if (response.ok && data.token && data.user) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("role", data.user.role); // ✅ Save role separately
+        localStorage.setItem("role", data.user.role);
 
         setMessage({ type: "success", text: "Login successful!" });
 
         setTimeout(() => {
-          // Optional: redirect based on role
           if (data.user.role === "mentor") {
             navigate("/mentor/dashboard");
           } else {
-            navigate("/student/dashboard");
+            navigate("/my-enrollments");
           }
         }, 1000);
       } else {
@@ -86,9 +89,10 @@ const Login = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="enter email id"
+              placeholder="Enter email ID"
             />
           </div>
+
           <div>
             <label className="block mb-1 text-gray-700 font-medium">Password</label>
             <input
@@ -98,8 +102,22 @@ const Login = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="enter your password"
+              placeholder="Enter your password"
             />
+          </div>
+
+          <div>
+            <label className="block mb-1 text-gray-700 font-medium">Role</label>
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="student">Student</option>
+              <option value="mentor">Mentor</option>
+            </select>
           </div>
 
           <button
