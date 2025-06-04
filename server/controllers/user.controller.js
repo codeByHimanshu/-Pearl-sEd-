@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import Signup from "../models/UserSchema.js";
 
 export const signup = async (req, res) => {
-  console.log("Signup request received:", req.body);
+
   try {
     const { name, email, password, role } = req.body;
 

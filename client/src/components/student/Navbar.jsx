@@ -4,10 +4,10 @@ import { AppContext } from "../../context/AppContext";
 import "animate.css";
 
 function Navbar() {
-  const location = useLocation();       
+  const location = useLocation();
   const isCourseList = location.pathname.includes("/course-list");
   const navigate = useNavigate();
-  const { isMentor, user, logout } = useContext(AppContext);
+  const { user, logout } = useContext(AppContext);
 
   return (
     <div
@@ -17,6 +17,7 @@ function Navbar() {
           : "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
       }`}
     >
+      
       <img
         src="/src/assets/loggo.svg"
         alt="Logo"
@@ -24,15 +25,13 @@ function Navbar() {
         className="h-16 w-52 cursor-pointer rounded-xl object-contain animate__animated animate__zoomIn"
       />
 
+
       <div className="hidden md:flex items-center space-x-6">
-        {user && (
+        {user ? (
           <>
-            <button
-              className="font-medium hover:text-gray-100 transition duration-300 animate__animated animate__fadeIn"
-              onClick={() => navigate("/mentor")}
-            >
-              {isMentor ? "Mentor Dashboard" : "Become Mentor"}
-            </button>
+            <span className="font-semibold animate__animated animate__fadeIn">
+              Hello, {user.name || "Student"}
+            </span>
 
             <Link
               to="/my-enrollments"
@@ -40,18 +39,20 @@ function Navbar() {
             >
               My Enrollments
             </Link>
-          </>
-        )}
 
-        {user ? (
-          <button
-            onClick={logout}
-            className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
-          >
-            Logout
-          </button>
+            <button
+              onClick={() => {
+                logout();
+                localStorage.removeItem("user");
+                navigate("/");
+              }}
+              className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
+            >
+              Logout
+            </button>
+          </>
         ) : (
-          <div className="space-x-4">
+          <>
             <button
               onClick={() => navigate("/login")}
               className="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300"
@@ -64,19 +65,15 @@ function Navbar() {
             >
               Sign Up
             </button>
-          </div>
+          </>
         )}
       </div>
 
+  
       <div className="md:hidden flex items-center space-x-4">
-        {user && (
+        {user ? (
           <>
-            <button
-              className="font-medium text-sm hover:text-gray-100 transition duration-300"
-              onClick={() => navigate("/mentor")}
-            >
-              {isMentor ? "Dashboard" : "Mentor"}
-            </button>
+            <span className="text-sm font-semibold">Hi, {user.name || "Student"}</span>
 
             <Link
               to="/my-enrollments"
@@ -84,17 +81,23 @@ function Navbar() {
             >
               Enrollments
             </Link>
+
+            <button
+              onClick={logout}
+              className="text-sm font-medium hover:text-gray-100"
+            >
+              Logout
+            </button>
           </>
-        )}
-        {user ? (
-          <button onClick={logout} className="text-sm font-medium hover:text-gray-100">
-            Logout
-          </button>
         ) : (
-          <div className="space-x-2">
-            <button onClick={() => navigate("/login")} className="text-sm">Login</button>
-            <button onClick={() => navigate("/signup")} className="text-sm">Sign Up</button>
-          </div>
+          <>
+            <button onClick={() => navigate("/login")} className="text-sm">
+              Login
+            </button>
+            <button onClick={() => navigate("/signup")} className="text-sm">
+              Sign Up
+            </button>
+          </>
         )}
       </div>
     </div>
