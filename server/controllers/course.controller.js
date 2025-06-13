@@ -1,11 +1,8 @@
-import express from "express";
-import Course from "../models/Course.js";
-import User from "../models/User.js";
 
-const router = express.Router();
+import Course from "../models/Course";
 
-// Create new course
-router.post("/create", async (req, res) => {
+
+export const createCourse = async (req, res) => {
   try {
     const { title, description, thumbnail, price, instructor } = req.body;
 
@@ -32,10 +29,10 @@ router.post("/create", async (req, res) => {
     console.error("Error creating course:", error);
     res.status(500).json({ error: "Server error" });
   }
-});
+};
 
-// Get all courses
-router.get("/", async (req, res) => {
+// Controller to get all courses
+export const getAllCourses = async (req, res) => {
   try {
     const courses = await Course.find()
       .populate("instructor", "name email")
@@ -46,10 +43,10 @@ router.get("/", async (req, res) => {
     console.error("Error fetching courses:", error);
     res.status(500).json({ error: "Server error" });
   }
-});
+};
 
-// Get course by ID
-router.get("/:id", async (req, res) => {
+// Controller to get a course by ID
+export const getCourseById = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id)
       .populate("instructor", "name email")
@@ -64,10 +61,10 @@ router.get("/:id", async (req, res) => {
     console.error("Error fetching course:", error);
     res.status(500).json({ error: "Server error" });
   }
-});
+};
 
-// Delete a course
-router.delete("/:id", async (req, res) => {
+// Controller to delete a course
+export const deleteCourse = async (req, res) => {
   try {
     const course = await Course.findByIdAndDelete(req.params.id);
 
@@ -80,6 +77,4 @@ router.delete("/:id", async (req, res) => {
     console.error("Error deleting course:", error);
     res.status(500).json({ error: "Server error" });
   }
-});
-
-export default router;
+};
