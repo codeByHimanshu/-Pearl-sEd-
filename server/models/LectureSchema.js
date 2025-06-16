@@ -15,7 +15,7 @@ const LectureSchema = new mongoose.Schema({
     required: [true, "Video URL is required"],
   },
   duration: {
-    type: Number, // in seconds or minutes
+    type: Number, 
     required: [true, "Duration is required"],
   },
   course: {

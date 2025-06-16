@@ -18,8 +18,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", router);
-app.use('api/course',courserouter)
-app.use("api/lecture",lectureRouter)
+app.use("/api/course",courserouter)
+app.use("/api/lecture",lectureRouter)
 
 
 app.get("/", (_req, res) => res.send("Server is running"));
