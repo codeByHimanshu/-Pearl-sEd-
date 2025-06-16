@@ -2,17 +2,14 @@ import Course from "../models/Course.js";
 import Signup from "../models/UserSchema.js";
 
 export const createCourse = async (req, res) => {
-  console.log("Creating course with body:", req.body);
-  console.log("user = ",req.user);
+  // console.log("Creating course with body:", req.body);
   try {
     const { title, description, thumbnail, price } = req.body;
-    const instructorId = req.user.id;
-    console.log("req user = ",req.user);
-    console.log("Instructor ID:", instructorId);
+    const instructorId = req.user.userId;
+    
     if (!title || !description || !thumbnail || !price) {
       return res.status(400).json({ error: "Missing required fields" });
     }
-     
     const instructorExists = await Signup.findById(instructorId);
     console.log("insturctor exist = ",instructorExists.role);
     if (!instructorExists || instructorExists.role !== "mentor") {
