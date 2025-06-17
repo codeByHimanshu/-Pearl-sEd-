@@ -1,37 +1,50 @@
 import Lecture from "../models/LectureSchema.js";
 import Course from "../models/Course.js";
 
-
 export const createLecture = async (req, res) => {
   try {
-    const { title, description, videoUrl, duration, course, order, isFreePreview } = req.body;
-
-    if (!title || !videoUrl || !duration || !course) {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
-
-    const courseExists = await Course.findById(course);
-    if (!courseExists) {
-      return res.status(404).json({ error: "Course not found" });
-    }
-
-    const lecture = new Lecture({
+    const {
       title,
       description,
       videoUrl,
       duration,
-      course,
+      order,
+      isFreePreview,
+      courseTitle,
+    } = req.body;
+
+    if (!title || !videoUrl || !duration || !courseTitle) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Find course by title
+    const course = await Course.findOne({ title: courseTitle });
+
+    if (!course) {
+      return res.status(404).json({ error: "Course with given title not found" });
+    }
+
+    const newLecture = new Lecture({
+      title,
+      description,
+      videoUrl,
+      duration,
+      course: course._id,
       order,
       isFreePreview,
     });
 
-    await lecture.save();
+    await newLecture.save();
 
-    await Course.findByIdAndUpdate(course, {
-      $push: { lectures: lecture._id },
+    // Add lecture to course
+    course.lectures.push(newLecture._id);
+    await course.save();
+
+    res.status(201).json({
+      message: "Lecture created and added to course",
+      lecture: newLecture,
+      courseId: course._id,
     });
-
-    res.status(201).json({ message: "Lecture created successfully", lecture });
   } catch (error) {
     console.error("Error creating lecture:", error);
     res.status(500).json({ error: "Server error" });
