@@ -60,47 +60,120 @@ function AddCourse() {
     setChapters(updatedChapters);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!courseTitle || !coursePrice || !image) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const description = quilRef.current?.root.innerHTML;
+    const formData = new FormData();
+    formData.append("title", courseTitle);
+    formData.append("price", coursePrice);
+    formData.append("thumbnail", image);
+    formData.append("description", description);
+
+    try {
+      const courseRes = await fetch("http://localhost:3000/api/course/create-lecture", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      const courseData = await courseRes.json();
+      if (!courseRes.ok) {
+        throw new Error(courseData.error || "Failed to create course");
+      }
+
+      // Upload each lecture
+      const flatLectures = chapters.flatMap((ch) => ch.chContent);
+      for (let i = 0; i < flatLectures.length; i++) {
+        const lec = flatLectures[i];
+        const lectureBody = {
+          title: lec.lecTitle,
+          videoUrl: lec.lecURL,
+          duration: lec.lecDuration,
+          description: "", // optional
+          order: i + 1,
+          isFreePreview: lec.isPreviewFree,
+          courseTitle: courseTitle,
+        };
+
+        const lecRes = await fetch("http://localhsot:3000/api/lecture/create-lecture", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(lectureBody),
+        });
+
+        const lecData = await lecRes.json();
+        if (!lecRes.ok) {
+          throw new Error(lecData.error || "Failed to create lecture");
+        }
+      }
+
+      alert("Course and lectures saved successfully!");
+      setCourseTitle("");
+      setCoursePrice("");
+      setImage(null);
+      setChapters([]);
+      quilRef.current?.setContents([]);
+    } catch (err) {
+      console.error("Submit error:", err);
+      alert(err.message || "Something went wrong");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add a New Course</h1>
 
-        <form className="space-y-6">
-
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Course Title */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Title</label>
             <input
               type="text"
               value={courseTitle}
               onChange={(e) => setCourseTitle(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none"
               placeholder="E.g. Mastering React in 30 Days"
             />
           </div>
 
+          {/* Description */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Description</label>
             <div ref={editorRef} className="h-48 bg-white border border-gray-300 rounded-xl p-2"></div>
           </div>
 
+          {/* Price */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Price (₹)</label>
             <input
               type="number"
               value={coursePrice}
               onChange={(e) => setCoursePrice(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none"
               placeholder="Enter price in INR"
             />
           </div>
 
+          {/* Thumbnail */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Thumbnail</label>
             <input
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
               accept="image/*"
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-xl file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition"
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-xl file:bg-blue-50 file:text-blue-700"
             />
             {image && (
               <div className="mt-4">
@@ -119,10 +192,7 @@ function AddCourse() {
             <h3 className="text-lg font-semibold mb-2">Chapters</h3>
             {chapters.map((chapter, chIndex) => (
               <div key={chIndex} className="mb-4 border border-gray-300 rounded-lg p-3 bg-gray-50">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => handleToggleCollapse(chIndex)}
-                >
+                <div className="flex items-center justify-between cursor-pointer" onClick={() => handleToggleCollapse(chIndex)}>
                   <div className="flex items-center">
                     <FaChevronDown className={`transition-transform duration-300 ${chapter.collapsed ? "-rotate-90" : ""}`} />
                     <span className="ml-2 font-medium">{chIndex + 1}. {chapter.title}</span>
@@ -135,12 +205,11 @@ function AddCourse() {
                     {chapter.chContent.map((lecture, lecIndex) => (
                       <div key={lecIndex} className="flex items-center justify-between text-sm bg-white p-2 rounded shadow-sm">
                         <span>
-                          {lecIndex + 1}. {lecture.lecTitle} – {lecture.lecDuration} mins – <a className="text-blue-600" href={lecture.lecURL} target="_blank" rel="noreferrer">Link</a> – {lecture.isPreviewFree ? "Free Preview" : "Paid"}
+                          {lecIndex + 1}. {lecture.lecTitle} – {lecture.lecDuration} mins –{" "}
+                          <a className="text-blue-600" href={lecture.lecURL} target="_blank" rel="noreferrer">Link</a> –{" "}
+                          {lecture.isPreviewFree ? "Free Preview" : "Paid"}
                         </span>
-                        <FaTimes
-                          onClick={() => handleDeleteLecture(chIndex, lecIndex)}
-                          className="text-red-500 cursor-pointer"
-                        />
+                        <FaTimes onClick={() => handleDeleteLecture(chIndex, lecIndex)} className="text-red-500 cursor-pointer" />
                       </div>
                     ))}
                     <button
@@ -154,16 +223,12 @@ function AddCourse() {
                 )}
               </div>
             ))}
-            <button
-              type="button"
-              onClick={handleAddChapter}
-              className="mt-2 flex items-center text-green-600"
-            >
+            <button type="button" onClick={handleAddChapter} className="mt-2 flex items-center text-green-600">
               <FaPlus className="mr-1" /> Add Chapter
             </button>
           </div>
 
-          {/* Popup for adding lecture */}
+          {/* Lecture Popup */}
           {showPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg space-y-4">
@@ -220,4 +285,3 @@ function AddCourse() {
 }
 
 export default AddCourse;
- 
