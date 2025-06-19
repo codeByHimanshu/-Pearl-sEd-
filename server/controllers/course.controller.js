@@ -36,10 +36,18 @@ export const createCourse = async (req, res) => {
 // Controller to get all courses
 export const getAllCourses = async (req, res) => {
   try {
-    const courses = await Course.find()
+    const instructorId = req.user.userId;
+    const instructor = await Signup.findById(instructorId);
+
+    if (!instructor || instructor.role !== "mentor") {
+      return res.status(403).json({ error: "Not authorized" });
+    }
+
+    const courses = await Course.find({ instructor: instructorId })
       .populate("instructor", "name email")
       .populate("lectures")
       .sort({ createdAt: -1 });
+
     res.status(200).json(courses);
   } catch (error) {
     console.error("Error fetching courses:", error);

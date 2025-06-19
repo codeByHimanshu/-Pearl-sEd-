@@ -89,7 +89,7 @@ function AddCourse() {
         throw new Error(courseData.error || "Failed to create course");
       }
 
-      // Upload each lecture
+     
       const flatLectures = chapters.flatMap((ch) => ch.chContent);
       for (let i = 0; i < flatLectures.length; i++) {
         const lec = flatLectures[i];
@@ -107,7 +107,7 @@ function AddCourse() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("acess_token")}`,
           },
           body: JSON.stringify(lectureBody),
         });
@@ -136,7 +136,7 @@ function AddCourse() {
         <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add a New Course</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Course Title */}
+         
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Title</label>
             <input
@@ -148,13 +148,13 @@ function AddCourse() {
             />
           </div>
 
-          {/* Description */}
+          
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Description</label>
             <div ref={editorRef} className="h-48 bg-white border border-gray-300 rounded-xl p-2"></div>
           </div>
 
-          {/* Price */}
+      
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Course Price (₹)</label>
             <input
