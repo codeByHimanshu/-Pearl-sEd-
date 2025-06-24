@@ -2,7 +2,7 @@ import React from 'react'
 
 function ActionButton() {
     return (
-      <div className="bg-gray-100  text-blue-900 p-10 rounded-2xl shadow-xl max-w-3xl mx-auto text-center animate__animated animate__fadeInUp">
+      <div className="bg-gray-100  text-blue-900 p-10 rounded-2xl   mx-auto text-center animate__animated animate__fadeInUp">
         <h2 className="text-3xl font-bold mb-4 animate__animated animate__fadeInDown">
        <span className='text-green-600'>   "The future belongs to those who learn more skills and combine them in creative ways."</span>
         </h2>

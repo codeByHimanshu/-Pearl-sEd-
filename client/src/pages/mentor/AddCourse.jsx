@@ -1,287 +1,256 @@
-import React, { useEffect, useRef, useState } from "react";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
-import { FaChevronDown, FaPlus, FaTrash, FaTimes } from "react-icons/fa";
+import React, { useState } from "react";
 
-function AddCourse() {
-  const quilRef = useRef();
-  const editorRef = useRef();
-  const [courseTitle, setCourseTitle] = useState("");
-  const [coursePrice, setCoursePrice] = useState("");
-  const [image, setImage] = useState(null);
-  const [chapters, setChapters] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
-  const [newLecture, setNewLecture] = useState({
-    lecTitle: "",
-    lecDuration: "",
-    lecURL: "",
-    isPreviewFree: false,
+const AddCourse = () => {
+  const [courseData, setCourseData] = useState({
+    title: "",
+    description: "",
+    thumbnail: "",
+    price: "",
   });
-  const [selectedChapterIndex, setSelectedChapterIndex] = useState(null);
 
-  useEffect(() => {
-    if (!quilRef.current && editorRef.current) {
-      quilRef.current = new Quill(editorRef.current, {
-        theme: "snow",
-        placeholder: "Write a detailed course description...",
-      });
-    }
-  }, []);
+  const [lectures, setLectures] = useState([
+    {
+      title: "",
+      description: "",
+      videoUrl: "",
+      duration: "",
+      order: 1,
+      isFreePreview: false,
+    },
+  ]);
 
-  const handleAddChapter = () => {
-    setChapters([
-      ...chapters,
-      { title: `Chapter ${chapters.length + 1}`, collapsed: false, chContent: [] },
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleCourseChange = (e) => {
+    const { name, value } = e.target;
+    setCourseData({ ...courseData, [name]: value });
+  };
+
+  const handleLectureChange = (index, e) => {
+    const { name, value, type, checked } = e.target;
+    const updatedLectures = [...lectures];
+    updatedLectures[index][name] = type === "checkbox" ? checked : value;
+    setLectures(updatedLectures);
+  };
+
+  const addLectureField = () => {
+    setLectures([
+      ...lectures,
+      {
+        title: "",
+        description: "",
+        videoUrl: "",
+        duration: "",
+        order: lectures.length + 1,
+        isFreePreview: false,
+      },
     ]);
-  };
-
-  const handleToggleCollapse = (index) => {
-    const updated = [...chapters];
-    updated[index].collapsed = !updated[index].collapsed;
-    setChapters(updated);
-  };
-
-  const handleAddLecture = (index) => {
-    setSelectedChapterIndex(index);
-    setShowPopup(true);
-  };
-
-  const handleSaveLecture = () => {
-    const updatedChapters = [...chapters];
-    updatedChapters[selectedChapterIndex].chContent.push(newLecture);
-    setChapters(updatedChapters);
-    setNewLecture({ lecTitle: "", lecDuration: "", lecURL: "", isPreviewFree: false });
-    setShowPopup(false);
-  };
-
-  const handleDeleteLecture = (chapterIndex, lectureIndex) => {
-    const updatedChapters = [...chapters];
-    updatedChapters[chapterIndex].chContent.splice(lectureIndex, 1);
-    setChapters(updatedChapters);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!courseTitle || !coursePrice || !image) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    const description = quilRef.current?.root.innerHTML;
-    const formData = new FormData();
-    formData.append("title", courseTitle);
-    formData.append("price", coursePrice);
-    formData.append("thumbnail", image);
-    formData.append("description", description);
+    setLoading(true);
+    setMessage("");
 
     try {
-      const courseRes = await fetch("http://localhost:3000/api/course/create-lecture", {
+      const token = localStorage.getItem("access_token");
+
+      // Step 1: Create Course
+      const courseRes = await fetch("http://localhost:3000/api/course/create-course", {
         method: "POST",
-        body: formData,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify(courseData),
       });
 
-      const courseData = await courseRes.json();
-      if (!courseRes.ok) {
-        throw new Error(courseData.error || "Failed to create course");
-      }
+      const courseResult = await courseRes.json();
+      if (!courseRes.ok) throw new Error(courseResult.error || "Course creation failed");
 
-     
-      const flatLectures = chapters.flatMap((ch) => ch.chContent);
-      for (let i = 0; i < flatLectures.length; i++) {
-        const lec = flatLectures[i];
-        const lectureBody = {
-          title: lec.lecTitle,
-          videoUrl: lec.lecURL,
-          duration: lec.lecDuration,
-          description: "", // optional
-          order: i + 1,
-          isFreePreview: lec.isPreviewFree,
-          courseTitle: courseTitle,
+      const courseTitle = courseResult.course.title;
+
+      // Step 2: Create Lectures (one by one)
+      for (const lecture of lectures) {
+        const payload = {
+          ...lecture,
+          courseTitle, // used for lookup in backend
         };
 
-        const lecRes = await fetch("http://localhsot:3000/api/lecture/create-lecture", {
+        const lectureRes = await fetch("http://localhost:3000/api/lecture/create-lecture", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("acess_token")}`,
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(lectureBody),
+          body: JSON.stringify(payload),
         });
 
-        const lecData = await lecRes.json();
-        if (!lecRes.ok) {
-          throw new Error(lecData.error || "Failed to create lecture");
-        }
+        const lectureResult = await lectureRes.json();
+        if (!lectureRes.ok) throw new Error(lectureResult.error || "Lecture creation failed");
       }
 
-      alert("Course and lectures saved successfully!");
-      setCourseTitle("");
-      setCoursePrice("");
-      setImage(null);
-      setChapters([]);
-      quilRef.current?.setContents([]);
+      setMessage("✅ Course and Lectures created successfully!");
+      setCourseData({ title: "", description: "", thumbnail: "", price: "" });
+      setLectures([
+        {
+          title: "",
+          description: "",
+          videoUrl: "",
+          duration: "",
+          order: 1,
+          isFreePreview: false,
+        },
+      ]);
     } catch (err) {
-      console.error("Submit error:", err);
-      alert(err.message || "Something went wrong");
+      setMessage(`❌ ${err.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add a New Course</h1>
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md overflow-y-auto max-h-[90vh]">
+      <h2 className="text-2xl font-semibold mb-4 text-center">Create Course with Lectures</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-         
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Course Title</label>
-            <input
-              type="text"
-              value={courseTitle}
-              onChange={(e) => setCourseTitle(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none"
-              placeholder="E.g. Mastering React in 30 Days"
-            />
-          </div>
+      {message && <p className="text-center mb-4 text-red-600">{message}</p>}
 
-          
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Course Description</label>
-            <div ref={editorRef} className="h-48 bg-white border border-gray-300 rounded-xl p-2"></div>
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Course Fields */}
+        <div>
+          <label className="block mb-1 font-medium">Course Title</label>
+          <input
+            type="text"
+            name="title"
+            value={courseData.title}
+            onChange={handleCourseChange}
+            className="w-full p-3 border rounded-md"
+            required
+          />
+        </div>
 
-      
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Course Price (₹)</label>
-            <input
-              type="number"
-              value={coursePrice}
-              onChange={(e) => setCoursePrice(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none"
-              placeholder="Enter price in INR"
-            />
-          </div>
+        <div>
+          <label className="block mb-1 font-medium">Description</label>
+          <textarea
+            name="description"
+            value={courseData.description}
+            onChange={handleCourseChange}
+            className="w-full p-3 border rounded-md"
+            rows="4"
+            required
+          />
+        </div>
 
-          {/* Thumbnail */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Course Thumbnail</label>
-            <input
-              type="file"
-              onChange={(e) => setImage(e.target.files[0])}
-              accept="image/*"
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-xl file:bg-blue-50 file:text-blue-700"
-            />
-            {image && (
-              <div className="mt-4">
-                <p className="text-sm text-gray-500 mb-1">Preview:</p>
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt="Thumbnail Preview"
-                  className="w-60 h-40 object-cover rounded-xl shadow"
-                />
-              </div>
-            )}
-          </div>
+        <div>
+          <label className="block mb-1 font-medium">Thumbnail URL</label>
+          <input
+            type="url"
+            name="thumbnail"
+            value={courseData.thumbnail}
+            onChange={handleCourseChange}
+            className="w-full p-3 border rounded-md"
+            required
+          />
+        </div>
 
-          {/* Chapters and Lectures */}
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Chapters</h3>
-            {chapters.map((chapter, chIndex) => (
-              <div key={chIndex} className="mb-4 border border-gray-300 rounded-lg p-3 bg-gray-50">
-                <div className="flex items-center justify-between cursor-pointer" onClick={() => handleToggleCollapse(chIndex)}>
-                  <div className="flex items-center">
-                    <FaChevronDown className={`transition-transform duration-300 ${chapter.collapsed ? "-rotate-90" : ""}`} />
-                    <span className="ml-2 font-medium">{chIndex + 1}. {chapter.title}</span>
-                  </div>
-                  <span className="text-sm text-gray-600">{chapter.chContent.length} lectures</span>
-                </div>
+        <div>
+          <label className="block mb-1 font-medium">Price (₹)</label>
+          <input
+            type="number"
+            name="price"
+            value={courseData.price}
+            onChange={handleCourseChange}
+            className="w-full p-3 border rounded-md"
+            required
+          />
+        </div>
 
-                {!chapter.collapsed && (
-                  <div className="mt-3 space-y-2">
-                    {chapter.chContent.map((lecture, lecIndex) => (
-                      <div key={lecIndex} className="flex items-center justify-between text-sm bg-white p-2 rounded shadow-sm">
-                        <span>
-                          {lecIndex + 1}. {lecture.lecTitle} – {lecture.lecDuration} mins –{" "}
-                          <a className="text-blue-600" href={lecture.lecURL} target="_blank" rel="noreferrer">Link</a> –{" "}
-                          {lecture.isPreviewFree ? "Free Preview" : "Paid"}
-                        </span>
-                        <FaTimes onClick={() => handleDeleteLecture(chIndex, lecIndex)} className="text-red-500 cursor-pointer" />
-                      </div>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={() => handleAddLecture(chIndex)}
-                      className="text-sm mt-2 text-blue-600 flex items-center"
-                    >
-                      <FaPlus className="mr-1" /> Add Lecture
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-            <button type="button" onClick={handleAddChapter} className="mt-2 flex items-center text-green-600">
-              <FaPlus className="mr-1" /> Add Chapter
-            </button>
-          </div>
+        {/* Lectures Section */}
+        <div className="mt-8">
+          <h3 className="text-xl font-semibold mb-4">Lectures</h3>
+          {lectures.map((lecture, index) => (
+            <div key={index} className="border p-4 mb-4 rounded-md bg-gray-50">
+              <input
+                type="text"
+                name="title"
+                placeholder="Lecture Title"
+                value={lecture.title}
+                onChange={(e) => handleLectureChange(index, e)}
+                className="w-full p-2 border rounded mb-2"
+                required
+              />
 
-          {/* Lecture Popup */}
-          {showPopup && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg space-y-4">
-                <h2 className="text-xl font-semibold">Add Lecture</h2>
+              <input
+                type="text"
+                name="description"
+                placeholder="Lecture Description"
+                value={lecture.description}
+                onChange={(e) => handleLectureChange(index, e)}
+                className="w-full p-2 border rounded mb-2"
+              />
+
+              <input
+                type="url"
+                name="videoUrl"
+                placeholder="Video URL"
+                value={lecture.videoUrl}
+                onChange={(e) => handleLectureChange(index, e)}
+                className="w-full p-2 border rounded mb-2"
+                required
+              />
+
+              <div className="flex gap-4 mb-2">
                 <input
-                  type="text"
-                  placeholder="Lecture Title"
-                  value={newLecture.lecTitle}
-                  onChange={(e) => setNewLecture({ ...newLecture, lecTitle: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  type="number"
+                  name="duration"
+                  placeholder="Duration (min)"
+                  value={lecture.duration}
+                  onChange={(e) => handleLectureChange(index, e)}
+                  className="w-full p-2 border rounded"
+                  required
                 />
                 <input
-                  type="text"
-                  placeholder="Duration (mins)"
-                  value={newLecture.lecDuration}
-                  onChange={(e) => setNewLecture({ ...newLecture, lecDuration: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  type="number"
+                  name="order"
+                  placeholder="Order"
+                  value={lecture.order}
+                  onChange={(e) => handleLectureChange(index, e)}
+                  className="w-full p-2 border rounded"
                 />
-                <input
-                  type="text"
-                  placeholder="Video URL"
-                  value={newLecture.lecURL}
-                  onChange={(e) => setNewLecture({ ...newLecture, lecURL: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
-                />
-                <label className="flex items-center space-x-2 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={newLecture.isPreviewFree}
-                    onChange={(e) => setNewLecture({ ...newLecture, isPreviewFree: e.target.checked })}
-                  />
-                  <span>Free Preview</span>
-                </label>
-                <div className="flex justify-end space-x-3">
-                  <button onClick={() => setShowPopup(false)} className="text-gray-600">Cancel</button>
-                  <button onClick={handleSaveLecture} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Add</button>
-                </div>
               </div>
+
+              <label className="flex items-center gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  name="isFreePreview"
+                  checked={lecture.isFreePreview}
+                  onChange={(e) => handleLectureChange(index, e)}
+                />
+                Free Preview
+              </label>
             </div>
-          )}
+          ))}
 
-          <div className="pt-4">
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
-            >
-              Save Course
-            </button>
-          </div>
-        </form>
-      </div>
+          <button
+            type="button"
+            onClick={addLectureField}
+            className="mt-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+          >
+            + Add Lecture
+          </button>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full mt-6 bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700"
+        >
+          {loading ? "Submitting..." : "Create Course & Lectures"}
+        </button>
+      </form>
     </div>
   );
-}
+};
 
 export default AddCourse;
