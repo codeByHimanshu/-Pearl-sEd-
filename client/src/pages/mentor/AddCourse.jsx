@@ -54,7 +54,7 @@ const AddCourse = () => {
     setMessage("");
 
     try {
-      const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("token");
 
       // Step 1: Create Course
       const courseRes = await fetch("http://localhost:3000/api/course/create-course", {
