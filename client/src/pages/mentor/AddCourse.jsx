@@ -56,7 +56,7 @@ const AddCourse = () => {
     try {
       const token = localStorage.getItem("token");
 
-      // Step 1: Create Course
+   
       const courseRes = await fetch("http://localhost:3000/api/course/create-course", {
         method: "POST",
         headers: {
@@ -71,11 +71,11 @@ const AddCourse = () => {
 
       const courseTitle = courseResult.course.title;
 
-      // Step 2: Create Lectures (one by one)
+     
       for (const lecture of lectures) {
         const payload = {
           ...lecture,
-          courseTitle, // used for lookup in backend
+          courseTitle,
         };
 
         const lectureRes = await fetch("http://localhost:3000/api/lecture/create-lecture", {
@@ -111,13 +111,13 @@ const AddCourse = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md overflow-y-auto max-h-[90vh]">
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md overflow-y-auto ">
       <h2 className="text-2xl font-semibold mb-4 text-center">Create Course with Lectures</h2>
 
       {message && <p className="text-center mb-4 text-red-600">{message}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Course Fields */}
+      
         <div>
           <label className="block mb-1 font-medium">Course Title</label>
           <input
@@ -166,7 +166,7 @@ const AddCourse = () => {
           />
         </div>
 
-        {/* Lectures Section */}
+    
         <div className="mt-8">
           <h3 className="text-xl font-semibold mb-4">Lectures</h3>
           {lectures.map((lecture, index) => (

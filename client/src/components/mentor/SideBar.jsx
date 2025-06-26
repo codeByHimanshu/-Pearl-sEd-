@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { NavLink } from "react-router-dom";
-import { FiBookOpen, FiGrid, FiUsers, FiPlusCircle } from "react-icons/fi"; // React Icons
+import { FiBookOpen, FiGrid, FiUsers, FiPlusCircle } from "react-icons/fi";
 
 function SideBar() {
   const { isMentor } = useContext(AppContext);
@@ -32,14 +32,12 @@ function SideBar() {
   return (
     isMentor && (
       <div
-        className="w-64  min-h-screen bg-gradient-to-b from-gray-800 via-blue-900 to-black
-
- text-white p-4 shadow-lg"  
+        className="w-64 min-h-screen bg-gradient-to-b from-gray-400 to-white text-blue p-4 shadow-lg
+        sticky top-0 z-30 flex flex-col"
       >
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Mentor Panel
         </h2>
-
         <nav className="flex flex-col gap-3">
           {menuBar.map((item) => (
             <NavLink
