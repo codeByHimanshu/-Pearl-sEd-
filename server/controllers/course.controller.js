@@ -1,6 +1,9 @@
 import Course from "../models/Course.js";
 import Signup from "../models/UserSchema.js";
 
+
+
+
 export const createCourse = async (req, res) => {
   // console.log("Creating course with body:", req.body);
   try {
@@ -35,31 +38,28 @@ export const createCourse = async (req, res) => {
 
 
 
-
-// Controller to get a course by ID
-export const getCourseById = async (req, res) => {
+export const getAllCoursesByInstructor = async (req, res) => {
   try {
-    const instructorId = req.user.userId;
-    const instructor = await Signup.findById(instructorId);
+    const instructorId = req.user.userId; 
 
+ 
+    const instructor = await Signup.findById(instructorId);
     if (!instructor || instructor.role !== "mentor") {
       return res.status(403).json({ error: "Not authorized" });
     }
 
-    const course = await Course.findOne({ _id: req.params.id, instructor: instructorId })
+ 
+    const courses = await Course.find({ instructor: instructorId })
       .populate("instructor", "name email")
       .populate("lectures");
 
-    if (!course) {
-      return res.status(404).json({ error: "Course not found or not authorized to access" });
-    }
-
-    res.status(200).json(course);
+    res.status(200).json(courses);
   } catch (error) {
-    console.error("Error fetching course:", error);
+    console.error("Failed to fetch courses:", error);
     res.status(500).json({ error: "Server error" });
   }
 };
+
  
 
 export const deleteCourse = async (req, res) => {

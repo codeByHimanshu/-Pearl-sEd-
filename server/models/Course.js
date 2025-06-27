@@ -20,7 +20,7 @@ const CourseSchema = new mongoose.Schema({
   },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", 
+    ref: "Signup", 
     required: true,
   },
   lectures: [{

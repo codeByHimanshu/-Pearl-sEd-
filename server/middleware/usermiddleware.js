@@ -13,6 +13,7 @@ const userMiddleware = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "12345678");
         // console.log("decoded",decoded)
         req.user = decoded;
+        role: decoded.role,
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Invalid token' });
