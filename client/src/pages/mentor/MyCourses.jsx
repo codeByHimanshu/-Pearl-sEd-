@@ -1,38 +1,63 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React, { useEffect, useState } from "react";
 
-function MyCourses() {
-  const { courseData } = useContext(AppContext);
+const MyCourses = () => {
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    setCourses(courseData);
-  }, []); 
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/course/get-all-courses", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch courses");
+        }
+
+        const data = await res.json();
+        setCourses(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  if (loading) return <div className="text-center mt-10 text-blue-500">Loading courses...</div>;
+  if (error) return <div className="text-center mt-10 text-red-500">Error: {error}</div>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">My Courses</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((course, index) => (
-          <div key={index} className="border rounded-lg shadow-md p-4 bg-white">
-            <img
-              src={course.thumbnail}
-              alt={course.courseTitle}
-              className="w-full h-40 object-cover rounded-md mb-4"
-            />
-            <h2 className="text-lg font-semibold">{course.courseTitle}</h2>
-            {course.courseDuration && (
-              <p className="text-sm text-gray-600 mt-1">Duration: {course.courseDuration}</p>
-            )}
-            {course.courseRating && (
-              <p className="text-sm text-yellow-600 mt-1">Rating: ⭐ {course.courseRating}</p>
-            )}
+    <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {courses.map((course) => (
+        <div
+          key={course._id}
+          className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        >
+          <img
+            src={course.thumbnail}
+            alt={course.title}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
+            <p className="text-sm text-gray-600 mb-2">{course.description}</p>
+            <p className="text-gray-700 font-medium">₹{course.price}</p>
+            <div className="mt-3 text-sm text-gray-500">
+              Instructor: <span className="font-medium">{course.instructor?.name}</span>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default MyCourses;
