@@ -31,21 +31,23 @@ function SideBar() {
 
   return (
     isMentor && (
-      <div
-        className="w-64 min-h-screen bg-gradient-to-b from-gray-400 to-white text-blue p-4 shadow-lg
-        sticky top-0 z-30 flex flex-col"
+      <aside
+        className="w-64 min-h-screen fixed top-0 left-0 z-40 bg-gradient-to-b from-green-150 via-white to-green-200 text-gray-600 shadow-xl px-5 py-8 rounded-tr-3xl rounded-br-3xl backdrop-blur-lg flex flex-col items-start justify-start"
       >
-        <h2 className="text-2xl font-semibold mb-6 text-center">
+        <h2 className="text-2xl font-bold mb-10 text-center w-full text-gray-800">
           Mentor Panel
         </h2>
-        <nav className="flex flex-col gap-3">
+
+        <nav className="flex flex-col gap-4 w-full">
           {menuBar.map((item) => (
             <NavLink
               to={item.path}
               key={item.name}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white hover:text-indigo-600 ${
-                  isActive ? "bg-white text-indigo-600 font-semibold" : ""
+                `flex items-center gap-3 px-4 py-2 rounded-xl text-base font-medium w-full transition-all duration-200 ${
+                  isActive
+                    ? "bg-white text-green-700 shadow-md"
+                    : "hover:bg-white/50 hover:text-green-700"
                 }`
               }
             >
@@ -54,7 +56,7 @@ function SideBar() {
             </NavLink>
           ))}
         </nav>
-      </div>
+      </aside>
     )
   );
 }
